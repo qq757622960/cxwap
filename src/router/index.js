@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from 'view/index/index'
 import Report from 'view/report/report'
+import Histogram from 'view/histogram/histogram'
+import DLoad from 'view/dload/dload'
 
 Vue.use(Router)
 
@@ -18,6 +20,14 @@ export default new Router({
 		{
 			path: '/report',
 			component: Report
+		},
+		{
+			path: '/dload',
+			component: DLoad
+		},
+		{
+			path: '/histogram',
+			component: Histogram
 		}
 	]
 })

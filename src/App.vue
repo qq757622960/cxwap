@@ -13,7 +13,7 @@
 			return {}
 		},
 		created() {
-			this._getIndex()
+			// this._getIndex()
 		},
 		methods: {
 			_getIndex() {
