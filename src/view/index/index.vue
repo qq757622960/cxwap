@@ -11,6 +11,8 @@
         @scroll="_scroll"
         @beforeScroll="_beforeScroll"
         :data="data">
+        <!-- state -->
+        <button @click="login">登录</button>
         <ul class="content">
             <li v-for="item in data">{{ item.title }}</li>
         </ul>
@@ -24,6 +26,7 @@
     import Scroll from 'base/scroll/scroll'
     import Loading from 'base/loading/loading'
     import {getComments, getPosts} from 'api/test'
+    import {mapMutations} from 'vuex'
 
     export default {
         data() {
@@ -36,6 +39,16 @@
             }
         },
         methods: {
+            login() {
+                this.$router.push({
+                    path: `/report`
+                })
+                this.setUserInfo({
+                    name: 'xfj',
+                    age: 26,
+                    level: 'challenger'
+                })
+            },
             _beforeScroll() {
                 console.log('beforeScroll');
             },
@@ -46,7 +59,10 @@
                 getComments().then((res) => {
                     this.data = res.data.concat(this.data)
                 })
-            }
+            },
+            ...mapMutations({
+                setUserInfo: 'SET_USERINFO'
+            })
         },
         created() {
             this._getComments()

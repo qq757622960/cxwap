@@ -22,6 +22,29 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 > 插件
 
+[vuex](https://vuex.vuejs.org/zh/installation.html) 
+
+> Vuex 是什么？为什么使用它?
+
+* 暂时理解为 全局对象 
+* 集中管理 Vue 中组件的 通用数据
+* 多个组件依赖同一个数据 (比如登录的用户信息)
+* 不同的视图的操作(如点击) 需要变更同一个数据
+
+> 单项数据流概念
+
+修改(Actions) -> 数据(state) -> 显示(View)
+
+
+
+* 使用
+```
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+```
+
 [v-charts](https://v-charts.js.org/#/) 
 
 ``` bash

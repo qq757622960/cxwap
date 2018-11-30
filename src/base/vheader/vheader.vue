@@ -1,6 +1,6 @@
 <template>
     <div class="m-head">
-        <a class="m-head-back"><i class="iconfont icon-fanhuijiantouxiangqingye"></i></a>
+        <a @click="back" class="m-head-back"><i class="iconfont icon-fanhuijiantouxiangqingye"></i></a>
         <h2 class="m-head-title">{{ htitle }}</h2>
         <a class="m-head-right" v-if="hrshow"><i class="iconfont icon-fanhuijiantouxiangqingye"></i></a>
     </div>
@@ -16,6 +16,11 @@
             hrshow: {
                 type: Boolean,
                 default: false
+            }
+        },
+        methods: {
+            back(e) {
+                this.$emit('back', e)
             }
         }
     }

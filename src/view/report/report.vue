@@ -19,6 +19,8 @@
                     :loading="loading">
                 </ve-line>
             </div>
+
+            <div class="slider"></div>
         </scroll>
     </div>
 </template>
@@ -27,6 +29,7 @@
 <script type="text/ecmascript-6">
     import VHeader from 'base/vheader/vheader'
     import Scroll from 'base/scroll/scroll'
+    import { mapGetters } from 'vuex'
 
     const DATA_FROM_BACKEND = {
         columns: ['date', 'W'],
@@ -135,6 +138,7 @@
             }
         },
         created() {
+            console.log(this.userinfo);
             this._getData()
         },
         methods: {
@@ -151,6 +155,9 @@
                 }, 500);
             }
         },
+        computed: {
+            ...mapGetters(['userinfo'])
+        },
         components: {
             VHeader,
             Scroll
@@ -159,6 +166,14 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+
+    .slider
+        width 100px
+        height 100px
+        background-color red
+        transition all .3s
+        transform translate3d(50%, 0, 0)
+
     .m-report
         position: fixed
         width 100%
