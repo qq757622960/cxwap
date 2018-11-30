@@ -1,13 +1,9 @@
 /** 
  * @Author: YISHI 
  * @Date: 2018-11-29 08:51:25 
- * @Desc 判断设备 底层设备, 微信
+ * @Desc 判断设备
  */
 
-/**
- * 判断设备 底层设备、微信
- * @param {String} key 
- */
 export function device(key) {
     let agent = navigator.userAgent.toLowerCase()
 
