@@ -20,7 +20,8 @@
         },
         methods: {
             back(e) {
-                this.$emit('back', e)
+                this.$router.back()
+                // this.$emit('back', e)
             }
         }
     }
@@ -36,7 +37,8 @@
         padding-left 10px
         padding-right 10px
         box-shadow 0 1px 3px #ccc
-        background-color rgba(255,255,255,.6)
+        background-color #fff
+        // background-color rgba(255,255,255,.6) 使用透明色, 会导致字体重合
         &::after
             content ''
             position absolute

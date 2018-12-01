@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from 'view/index/index'
 import Report from 'view/report/report'
-import Histogram from 'view/histogram/histogram'
 import DLoad from 'view/dload/dload'
+import Charts from 'view/charts/charts'
+import Histogram from 'view/histogram/histogram'
+import Line from 'view/line/line'
 
 Vue.use(Router)
 
@@ -26,8 +28,15 @@ export default new Router({
 			component: DLoad
 		},
 		{
-			path: '/histogram',
-			component: Histogram
+			path: '/charts',
+			component: Charts,
+			children: [{
+				path: 'line',
+				component: Line
+			},{
+				path: 'histogram',
+				component: Histogram
+			}]
 		}
 	]
 })

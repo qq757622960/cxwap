@@ -14,7 +14,7 @@
         <!-- state -->
         <button @click="login">登录</button>
         <ul class="content">
-            <li v-for="item in data">{{ item.title }}</li>
+            <li v-for="item in data" :key="item.title">{{ item.title }}</li>
         </ul>
         <div class="loading-container">
             <loading v-show="!data.length"></loading>
