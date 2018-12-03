@@ -9,6 +9,3 @@ export function getPosts() {
     var url = 'http://jsonplaceholder.typicode.com/posts/1'
     return axios.get(url, {}).then(res => Promise.resolve(res))
 }
-
-
-

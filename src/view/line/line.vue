@@ -2,7 +2,9 @@
     <chart htitle="折线图表">
         <ve-line
             :data="chartData"
-            :settings="chartSettings">
+            :settings="chartSettings"
+            @ready="ready"
+            :before-config="beforeConfig">
         </ve-line>
     </chart>
 </template>
@@ -13,31 +15,39 @@
     export default {
         data() {
             this.chartSettings = {
-                area: true,
-                xAxisType: 'category',
-                legendName: {
-                    '女生': '总数量为女生'
-                }
+                area: true
             }
 
             return {
                 chartData: {
-                    columns: ['日期', '女生'],
+                    columns: ['日期', '体重'],
                     rows: [
-                        { '日期': '5', '女生': 25 },
-                        { '日期': '7', '女生': 23 },
-                        { '日期': '9', '女生': 28 },
-                        { '日期': '12', '女生': 29 },
-                        { '日期': '14', '女生': 26 }
+                        { '日期': '06/01', '体重': 50 },
+                        { '日期': '06/02', '体重': 60 },
+                        { '日期': '06/03', '体重': 70 },
+                        { '日期': '06/04', '体重': 80 },
+                        { '日期': '06/05', '体重': 90 },
+                        { '日期': '06/06', '体重': 50 },
+                        { '日期': '06/07', '体重': 60 },
+                        { '日期': '06/08', '体重': 70 }
                     ]
                 }
             }
         },
-        methods: {},
+        methods: {
+            ready() {
+                console.log('ready');
+            },
+            beforeConfig() {
+                console.log('beforeConfig');
+            }
+        },
         components: {
             Chart
         },
-        created() {},
+        created() {
+            
+        },
         mounted() {}
     }
 </script>

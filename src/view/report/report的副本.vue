@@ -3,6 +3,7 @@
         <v-header htitle="体重变化曲线"></v-header>
         <scroll class="wrapper">
             <div class="echart-cont">
+                <!-- <button @click="_getData">GET</button> -->
                 <div class="echart-title">
                     <img src="./icon.jpg" alt="">
                     <h2>体重曲线</h2>
@@ -28,8 +29,30 @@
     import { getReportList } from 'api/report'
     import { mapGetters } from 'vuex'
 
-    const START = 70    // 起始位置
+    const DATA_FROM_BACKEND = {
+        columns: ['date', 'W'],
+        rows: [
+            { 'date': '6/12\n2018', 'W': 44.9},
+            { 'date': '6/14\n2018', 'W': 72.5},
+            { 'date': '6/15\n2018', 'W': 88.9},
+            { 'date': '6/17\n2018', 'W': 99.2},
+            { 'date': '6/19\n2018', 'W': 56.6},
+            { 'date': '6/20\n2018', 'W': 55},
+            { 'date': '6/22\n2018', 'W': 66},
+            { 'date': '6/24\n2018', 'W': 44},
+            { 'date': '6/26\n2018', 'W': 46},
+            { 'date': '6/28\n2018', 'W': 50},
+            { 'date': '6/30\n2018', 'W': 52},
+            { 'date': '7/2\n2018', 'W': 58},
+            { 'date': '7/4\n2018', 'W': 60}
+        ]
+    }
+    const START = (7 / DATA_FROM_BACKEND.rows.length * 100) | 0    // 起始位置
     const END = 100  // 结束位置
+    const EMPTY_DATA = {
+        columns: [],
+        rows: []
+    }
     const RED_LIGHT = '#fe7596'
     const RED_DARK = '#fedce5'
 
@@ -113,29 +136,41 @@
             }
         },
         created() {
+            // this._getData()
             this._getReportList()
         },
         methods: {
-            _getReportList() {
+            _getData() {
                 this.loading = true
-                getReportList().then((res) => {
-                    this.chartData = this._normalizeList(res.data.data.list)
+                setTimeout(() => {
+                    this.chartData = 
+                        this.chartData.rows.length
+                            ? EMPTY_DATA
+                            : DATA_FROM_BACKEND
+
                     this.dataEmpty = !this.chartData.rows.length
                     this.loading = false
-                })    
+                }, 500);
+            },
+            _getReportList() {
+                getReportList().then((res) => {
+                    this.chartData = this._normalizeList(res.data.data.list)
+                    console.log(this.chartData);
+                })
             },
             _normalizeList(list) {
-                let chartData = {
+                let data = {
                     columns: ['ctime', 'weight'],
                     rows: []
                 }
                 list.forEach(item => {
-                    chartData.rows.push({
-                        ctime: this._formatDate(item['ctime']),
-                        weight: item['weight']
+                    data.rows.push({
+                        'ctime': this._formatDate(item['ctime']),
+                        'weight': item['weight']
                     })
                 })
-                return chartData
+                
+                return data
             },
             _formatDate(temp) {
                 let date = new Date(temp * 1000)

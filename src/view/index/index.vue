@@ -12,10 +12,12 @@
         @beforeScroll="_beforeScroll"
         :data="data">
         <!-- state -->
-        <button @click="login">登录</button>
-        <ul class="content">
-            <li v-for="item in data" :key="item.title">{{ item.title }}</li>
-        </ul>
+        <div>
+            <button @click="login">登录</button>
+            <ul class="content">
+                <li v-for="item in data" :key="item.title">{{ item.title }}</li>
+            </ul>
+        </div>
         <div class="loading-container">
             <loading v-show="!data.length"></loading>
         </div>
@@ -26,6 +28,7 @@
     import Scroll from 'base/scroll/scroll'
     import Loading from 'base/loading/loading'
     import {getComments, getPosts} from 'api/test'
+    import {getGoodsList} from 'api/index'
     import {mapMutations} from 'vuex'
 
     export default {
@@ -60,12 +63,18 @@
                     this.data = res.data.concat(this.data)
                 })
             },
+            _getGoodsList() {
+                getGoodsList().then((res) => {
+                    console.log(res)
+                }) 
+            },
             ...mapMutations({
                 setUserInfo: 'SET_USERINFO'
             })
         },
         created() {
             this._getComments()
+            this._getGoodsList()
         },
         components: {
             Scroll,

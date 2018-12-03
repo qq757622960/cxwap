@@ -9,6 +9,7 @@ import router from './router'
 import store from './store'
 import 'common/stylus/index.styl'
 import 'v-charts/lib/style.css'
+import _ from 'lodash'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body)

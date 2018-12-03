@@ -67,6 +67,9 @@
         width 100%
         top: 50px
         bottom: 0
+        max-width 540px
+        min-width 320px
+        margin 0 auto
         .wrapper
             height 100%
             overflow hidden

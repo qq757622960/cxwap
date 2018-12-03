@@ -5,6 +5,8 @@
             <ul class="charts-list">
                 <li @click="toHistogram" class="charts-item">柱状图</li>
                 <li @click="toLine" class="charts-item">折线图</li>
+                <li @click="toWord" class="charts-item">词云图</li>
+                <li @click="toGauge" class="charts-item">仪表盘</li>
             </ul>
         </scroll>
 
@@ -26,6 +28,12 @@
             },
             toLine() {
                 this._toRouter('/charts/line')
+            },
+            toWord() {
+                this._toRouter('/charts/wordcloud')
+            },
+            toGauge() {
+                this._toRouter('/charts/gauge')
             },
             _toRouter(path) {
                 this.$router.push({

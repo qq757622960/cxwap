@@ -6,6 +6,8 @@ import DLoad from 'view/dload/dload'
 import Charts from 'view/charts/charts'
 import Histogram from 'view/histogram/histogram'
 import Line from 'view/line/line'
+import Wordcloud from 'view/wordcloud/wordcloud'
+import Gauge from 'view/gauge/gauge'
 
 Vue.use(Router)
 
@@ -13,7 +15,7 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			redirect: '/index'
+			redirect: '/dload'
 		},
 		{
 			path: '/index',
@@ -36,6 +38,12 @@ export default new Router({
 			},{
 				path: 'histogram',
 				component: Histogram
+			}, {
+				path: 'wordcloud',
+				component: Wordcloud
+			}, {
+				path: 'gauge',
+				component: Gauge
 			}]
 		}
 	]
