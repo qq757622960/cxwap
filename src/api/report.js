@@ -9,7 +9,7 @@ export function getReportList() {
         user_id: 24,
         token: 'BE52BCDA801ACE78B1CA6A005F2EB9FA312D70A91B3C18856C9E42066D123573'
     }
-
+    // 获取签名
     let getsign = getSign('V1.BodyRecord.GetWeightHistory')
 
     return getsign.then((res) => {

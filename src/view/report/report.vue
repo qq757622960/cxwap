@@ -25,6 +25,7 @@
 <script type="text/ecmascript-6">
     import VHeader from 'base/vheader/vheader'
     import Scroll from 'base/scroll/scroll'
+    import Report from 'common/js/report'
     import { getReportList } from 'api/report'
     import { mapGetters } from 'vuex'
 
@@ -122,7 +123,7 @@
                     this.chartData = this._normalizeList(res.data.data.list)
                     this.dataEmpty = !this.chartData.rows.length
                     this.loading = false
-                })    
+                })
             },
             _normalizeList(list) {
                 let chartData = {
@@ -130,16 +131,12 @@
                     rows: []
                 }
                 list.forEach(item => {
-                    chartData.rows.push({
-                        ctime: this._formatDate(item['ctime']),
+                    chartData.rows.push(new Report({
+                        ctime: item['ctime'],
                         weight: item['weight']
-                    })
+                    }))
                 })
                 return chartData
-            },
-            _formatDate(temp) {
-                let date = new Date(temp * 1000)
-                return `${date.getMonth() + 1}/${date.getDay()}\n${date.getFullYear()}`
             }
         },
         computed: {
@@ -153,7 +150,6 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
     .slider
         width 100px
         height 100px
