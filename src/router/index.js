@@ -8,6 +8,7 @@ import Histogram from 'view/histogram/histogram'
 import Line from 'view/line/line'
 import Wordcloud from 'view/wordcloud/wordcloud'
 import Gauge from 'view/gauge/gauge'
+import Bridge from 'view/bridge/bridge'
 
 Vue.use(Router)
 
@@ -16,6 +17,10 @@ export default new Router({
 		{
 			path: '/',
 			redirect: '/dload'
+		},
+		{
+			path: '/bridge',
+			component: Bridge
 		},
 		{
 			path: '/index',
