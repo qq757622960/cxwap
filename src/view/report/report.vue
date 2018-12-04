@@ -28,7 +28,7 @@
     import { getReportList } from 'api/report'
     import { mapGetters } from 'vuex'
 
-    const START = 70    // 起始位置
+    const START = 70 // 起始位置
     const END = 100  // 结束位置
     const RED_LIGHT = '#fe7596'
     const RED_DARK = '#fedce5'
