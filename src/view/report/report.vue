@@ -1,6 +1,6 @@
 <template>
     <div class="m-report">
-        <v-header htitle="体重变化曲线"></v-header>
+        <v-header htitle="体重变化曲线" @back="back"></v-header>
         <scroll class="wrapper">
             <div class="echart-cont">
                 <div class="echart-title">
@@ -27,6 +27,7 @@
     import Scroll from 'base/scroll/scroll'
     import Report from 'common/js/report'
     import { getReportList } from 'api/report'
+    import { closeWebView } from 'common/js/bridge'
     import { mapGetters } from 'vuex'
 
     const START = 70 // 起始位置
@@ -117,6 +118,9 @@
             this._getReportList()
         },
         methods: {
+            back(e) {
+                closeWebView()
+            },
             _getReportList() {
                 this.loading = true
                 getReportList().then((res) => {

@@ -20,8 +20,8 @@
         },
         methods: {
             back(e) {
-                this.$router.back()
-                // this.$emit('back', e)
+                // this.$router.back()
+                this.$emit('back', e)
             }
         }
     }

@@ -20,6 +20,24 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+> 桥接
+[DSBridge](https://blog.csdn.net/duwen90/article/details/78413069)
+```
+// JS 调用 native
+var bridge = getJsBridge()
+var str = bridge.call(‘testSyn’, {msg: ‘hello world’})
+console.log(str)
+
+// native 调用 javascript
+// DSBridge 中, 只需要将一个函数声明为全局函数即可
+window.jsfun = function(data) {
+    console.log(‘I am js function, arg is: ’, data)
+}
+```
+* “dsBridge” 是一个全局对象, 在h5页面中初始化DSBridge后便会可用，它有两个方法 “call” 和 “register”;
+* bridge.call(method,[args,callback])
+* dsBridge.register(methodName,function)
+
 > 插件
 
 [vuex](https://vuex.vuejs.org/zh/installation.html) 

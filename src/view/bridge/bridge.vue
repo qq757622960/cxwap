@@ -1,36 +1,24 @@
 <template>
     <div>
-        <button ref="close" id="close">关闭WebView</button>
+        <button @click="closeWebView" ref="close" id="close">关闭WebView</button>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import { setupWebViewJavascriptBridge } from 'common/js/bridge'
+    import { closeWebView } from 'common/js/bridge'
 
     export default {
         data() {
             return {}
         },
-        methods: {},
+        methods: {
+            closeWebView() {
+                closeWebView()
+            }
+        },
         components: {},
         created() {
-            alert(111)
-            setupWebViewJavascriptBridge(function (bridge) {
-                alert('bridge');
-                // 监听app事件
-                bridge.registerHandler('pushToNewWebSite', function (data, responseCallback) {
-                    window.location.href = data.url
-                })
-
-                // 触发app事件
-                document.getElementById('close').onclick = function() {
-                    alert('关闭app')
-                    bridge.callHandler('die', {'count': '10'}, function(res) {
-                        debugger
-                        console.log(res)
-                    })
-                }
-            })
+            
         },
         mounted() {}
     }

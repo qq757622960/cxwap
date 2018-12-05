@@ -28,7 +28,10 @@ export default new Router({
 		},
 		{
 			path: '/report',
-			component: Report
+			component: Report,
+			query: {
+				back: true
+			}
 		},
 		{
 			path: '/dload',
