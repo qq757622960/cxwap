@@ -14,6 +14,17 @@
 const dsBridge = require("dsbridge")
 
 // 调用app关闭当前webview
+// TODO: 关闭当前 WebView
 export function closeWebView() {
-    alert(dsBridge.call('closeWebView'))
+    dsBridge.call('closeWebView')
+}
+
+// 获取当前用户的登录信息
+// TODO: 1. 拿到用户信息之后  2. 调用图表接口(该接口需要用户信息)
+export function getUserInfo() {
+    return new Promise(function(resolve, reject) {
+        dsBridge.call('getUserInfo', null, function (data) {
+            resolve(data)
+        })    
+    })
 }
