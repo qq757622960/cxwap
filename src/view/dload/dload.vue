@@ -1,24 +1,19 @@
 <template>
     <div class="m-dload">
         <v-header htitle="幻轻APP"></v-header>
-        <scroll class="wrapper">
+        <scroll class="wrapper" ref="scroll">
             <div>
-                <section class="m-block">
-                    <img src="./1.jpg" alt="" />
-                    <a @click="dload" class="m-btn m-dload-1"></a>
-                </section>
-                <section class="m-block">
-                    <img src="./2.jpg" alt="" />
-                </section>
-                <section class="m-block">
-                    <img src="./3.jpg" alt="" />
-                </section>
-                <section class="m-block">
-                    <img src="./4.jpg" alt="" />
-                </section>
-                <section class="m-block">
-                    <img src="./5.jpg" alt="" />
-                    <a @click="dload" class="m-btn m-dload-2"></a>
+                <!-- 第一张或最后一张显示下载按钮 -->
+                <section 
+                    v-for="(item, index) in imgdata"
+                    :key="index"
+                    class="m-block">
+                        <img :src="item" @load="imgLoader" alt="" />
+                        <a v-if="index == 0 || index == imgdata.length - 1"
+                           @click="dload"
+                           class="m-btn"
+                           :class="{ 'm-dload-1': index == 0, 'm-dload-2': index == imgdata.length - 1 }">
+                        </a>
                 </section>
             </div>
         </scroll>
@@ -49,10 +44,20 @@
                 } else if (this.result.weixin) {
 
                 }
-            }  
+            },
+            imgLoader() {
+                this.$refs.scroll.refresh()
+            }
         },
         created() {
             this.result = device()
+            this.imgdata = [
+                require('./1.jpg'),
+                require('./2.jpg'),
+                require('./3.jpg'),
+                require('./4.jpg'),
+                require('./5.jpg')
+            ]
         },
         components: {
             VHeader,
