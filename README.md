@@ -33,6 +33,14 @@ console.log(str)
 window.jsfun = function(data) {
     console.log(‘I am js function, arg is: ’, data)
 }
+
+// 同步调用
+var str=dsBridge.call("testSyn", {msg: "testSyn"});
+
+// 异步调用
+dsBridge.call("testAsyn", {msg: "testAsyn"}, function (v) {
+    alert(v);
+})
 ```
 * “dsBridge” 是一个全局对象, 在h5页面中初始化DSBridge后便会可用，它有两个方法 “call” 和 “register”;
 * bridge.call(method,[args,callback])

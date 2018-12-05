@@ -4,7 +4,7 @@
  * @Desc: JS APP 桥接 
  */
 
-// 语法&地址
+// 语法&地址 具体请参考 README.md
 // dsBridge.call(method, [args, callback])
 // dsBridge.register(methodName,function)
 // https://github.com/wendux/DSBridge-IOS/blob/master/readme-chs.md
