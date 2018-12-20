@@ -21,6 +21,13 @@
                     <p>越来越多的人了解到, 糖和米面等淀粉类主食吃多了, 非常容易导致肥胖, 糖尿病, 脂肪肝, 高血压, 心脏病等等问题</p>
                     <p>可是，为什么我们的父母不愿意听我们的, 我们应该怎么做, 才能慢慢的改变他们的老观念呢？</p>
                 </div>
+                <div class="m-footer">
+                    <div class="read">
+                        <img src="./read@3x.png" alt="" />
+                        <span>1131人阅读</span>
+                    </div>
+                    <p class="finally">The End</p>
+                </div>
             </div>
         </scroll>
     </div>
@@ -114,6 +121,16 @@
                     padding-left 15px
                     font-size 16px
                     font-weight 700
+                    em
+                        width: 4px
+                        height: 4px
+                        display: inline-block
+                        text-indent: -9999px
+                        background-color: #666
+                        border-radius: 50%
+                        position: relative
+                        transform: translate(0, 10px)
+                        margin: 0 3px
             .m-article
                 padding 25px 0
                 p,
@@ -126,7 +143,24 @@
                     font-size 16px
                     font-weight 100
                     line-height 1.5
-
+            .m-footer
+                .read
+                    padding-bottom 25px
+                    border-bottom: 1px dotted #ddd
+                    img,
+                    span 
+                        vertical-align middle
+                    img 
+                        width 22px
+                        height 16px
+                    span
+                        font-size 14px
+                        color #ccc
+                .finally
+                    padding 15px 0 25px 0
+                    color #ccc
+                    font-size 16px
+                    text-align center
 
 
 </style>
