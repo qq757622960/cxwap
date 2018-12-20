@@ -64,7 +64,8 @@
                 max-width 100%
         .share-cont
             display flex
-            padding 38px 52px 20px 0
+            align-items: center
+            padding 38px 42px 20px 10px
             .left
                 flex 1
                 text-align center
