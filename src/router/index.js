@@ -11,6 +11,9 @@ import Gauge from 'view/gauge/gauge'
 import Bridge from 'view/bridge/bridge'
 import Cdetail from 'view/cdetail/cdetail'
 import Aftsale from 'view/aftsale/aftsale'
+import WarmRemind from 'view/warmRemind/warmRemind'
+import AftsaleExplain from 'view/aftsaleExplain/aftsaleExplain'
+import ApplyRefund from 'view/applyRefund/applyRefund'
 
 Vue.use(Router)
 
@@ -45,7 +48,17 @@ export default new Router({
 		},
 		{
 			path: '/aftsale',
-			component: Aftsale
+			component: Aftsale,
+			children: [{
+				path: '/warmRemind',
+				component: WarmRemind
+			}, {
+				path: '/aftsaleExplain',
+				component: AftsaleExplain
+			}, {
+				path: '/applyRefund',
+				component: ApplyRefund
+			}]
 		},
 		{
 			path: '/charts',

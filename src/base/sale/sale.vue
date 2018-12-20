@@ -1,6 +1,6 @@
 <template>
     <transition name="slide">
-        <div class="chart">
+        <div class="sale">
             <v-header :htitle="htitle" @back="back"></v-header>
             <scroll class="wrapper">
                 <div>
@@ -40,7 +40,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
     @import '~common/stylus/variable'
 
-    .chart
+    .sale
         position fixed
         top 0
         right 0
