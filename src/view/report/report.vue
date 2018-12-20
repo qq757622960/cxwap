@@ -119,7 +119,8 @@
         },
         methods: {
             back(e) {
-                closeWebView()
+                this.$router.back();
+                // closeWebView()  // 桥接关闭页面
             },
             _getReportList() {
                 this.loading = true

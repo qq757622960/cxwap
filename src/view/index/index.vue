@@ -1,95 +1,98 @@
 <template>
-    <scroll 
-        class="wrapper" 
-        ref="wrapper"
-        :pulldown="pulldown"
-        :pullup="pullup"
-        :listenScroll="listenScroll"
-        :beforeScroll="beforeScroll"
-        @pulldown="_getComments"
-        @scrollToEnd="_getComments"
-        @scroll="_scroll"
-        @beforeScroll="_beforeScroll"
-        :data="data">
-        <!-- state -->
-        <div>
-            <button @click="login">登录</button>
-            <ul class="content">
-                <li v-for="item in data" :key="item.title">{{ item.title }}</li>
+    <div class="home">
+        <v-header htitle="首页"></v-header>
+        <scroll class="home-cont">
+            <ul class="home-list">
+                <li @click="toReport" class="home-item">
+                    报表页面
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
+                <li @click="toDload" class="home-item">
+                    下载页面
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
+                <li @click="toCdetail" class="home-item">
+                    内容详情
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
+                <li @click="toBridge" class="home-item">
+                    桥接页面
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
             </ul>
-        </div>
-        <div class="loading-container">
-            <loading v-show="!data.length"></loading>
-        </div>
-    </scroll>
+        </scroll>
+    </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import VHeader from 'base/vheader/vheader'
     import Scroll from 'base/scroll/scroll'
-    import Loading from 'base/loading/loading'
-    import {getComments, getPosts} from 'api/test'
-    import {getGoodsList} from 'api/index'
-    import {mapMutations} from 'vuex'
 
     export default {
         data() {
-            return {
-                data: [],
-                pulldown: false,
-                pullup: false,
-                listenScroll: false,
-                beforeScroll: false
-            }
+            return {}
         },
         methods: {
-            login() {
+            toReport() {
+                this._toRouter('/report')
+            },
+            toDload() {
+                this._toRouter('/dload')
+            },
+            toBridge() {
+                this._toRouter('/bridge')
+            },
+            toCdetail() {
+                this._toRouter('/cdetail')
+            },
+            _toRouter(path) {
                 this.$router.push({
-                    path: `/report`
+                    path: path
                 })
-                this.setUserInfo({
-                    name: 'xfj',
-                    age: 26,
-                    level: 'challenger'
-                })
-            },
-            _beforeScroll() {
-                console.log('beforeScroll');
-            },
-            _scroll(pos) {
-                console.log(pos);
-            },
-            _getComments() {
-                getComments().then((res) => {
-                    this.data = res.data.concat(this.data)
-                })
-            },
-            _getGoodsList() {
-                getGoodsList().then((res) => {
-                    console.log(res)
-                }) 
-            },
-            ...mapMutations({
-                setUserInfo: 'SET_USERINFO'
-            })
-        },
-        created() {
-            this._getComments()
-            this._getGoodsList()
+            }
         },
         components: {
-            Scroll,
-            Loading
-        }
-    };
+            VHeader,
+            Scroll
+        },
+        created() {},
+        mounted() {}
+    }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-    .wrapper
-        height 100%
-        overflow hidden
-    .loading-container
-        position: absolute
-        width: 100%
-        top: 50%
-        transform: translateY(-50%)
+    .home
+        position: fixed
+        width 100%
+        top: 60px
+        bottom: 0
+        max-width 540px
+        min-width 320px
+        background-color #fff
+        .home-cont
+            height 100%
+            overflow hidden
+            .home-list
+                padding-left 10px
+                .home-item
+                    position relative
+                    padding 11px 15px
+                    font-size 16px
+                    .icon
+                        position absolute
+                        right 15px
+                        top 50%
+                        transform translate3d(0, -50%, 0)
+                        font-size 18px
+                        color #bbb
+                    &:after
+                        content ''
+                        position absolute
+                        right 0
+                        bottom 0
+                        left 0
+                        height 1px
+                        background-color #ddd
+                        transform scaleY(.5)
+
 </style>

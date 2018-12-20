@@ -9,6 +9,7 @@ import Line from 'view/line/line'
 import Wordcloud from 'view/wordcloud/wordcloud'
 import Gauge from 'view/gauge/gauge'
 import Bridge from 'view/bridge/bridge'
+import Cdetail from 'view/cdetail/cdetail'
 
 Vue.use(Router)
 
@@ -16,7 +17,7 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			redirect: '/dload'
+			redirect: '/index'
 		},
 		{
 			path: '/bridge',
@@ -36,6 +37,10 @@ export default new Router({
 		{
 			path: '/dload',
 			component: DLoad
+		},
+		{
+			path: '/cdetail',
+			component: Cdetail
 		},
 		{
 			path: '/charts',

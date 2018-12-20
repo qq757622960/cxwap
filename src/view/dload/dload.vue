@@ -1,6 +1,6 @@
 <template>
     <div class="m-dload">
-        <v-header htitle="幻轻APP"></v-header>
+        <v-header htitle="幻轻APP" @back="back"></v-header>
         <scroll class="wrapper" ref="scroll">
             <div>
                 <!-- 第一张或最后一张显示下载按钮 -->
@@ -47,6 +47,9 @@
             },
             imgLoader() {
                 this.$refs.scroll.refresh()
+            },
+            back() {
+                this.$router.back();
             }
         },
         created() {
