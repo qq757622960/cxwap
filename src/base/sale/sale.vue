@@ -39,7 +39,6 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
     @import '~common/stylus/variable'
-
     .sale
         position fixed
         top 0
@@ -49,10 +48,11 @@
         z-index 10
         background-color $color-background
     .wrapper
-        background-color #fff
-        margin-top 60px
+        padding-top 60px
         height 100%
         overflow hidden
+        div
+            height 100%
 
     .slide-enter-active, .slide-leave-active
         transition: all 0.3s
