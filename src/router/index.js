@@ -9,11 +9,13 @@ import Line from 'view/line/line'
 import Wordcloud from 'view/wordcloud/wordcloud'
 import Gauge from 'view/gauge/gauge'
 import Bridge from 'view/bridge/bridge'
-import Cdetail from 'view/cdetail/cdetail'
-import Aftsale from 'view/aftsale/aftsale'
+import Cdetail from 'view/cdetail/cdetail'                     // 详情页面
+import Aftsale from 'view/aftsale/aftsale'                     // 客服
 import WarmRemind from 'view/warmRemind/warmRemind'
 import AftsaleExplain from 'view/aftsaleExplain/aftsaleExplain'
 import ApplyRefund from 'view/applyRefund/applyRefund'
+import WeightShare from 'view/weightShare/weightShare'         // 体重分享
+import InviteFriends from 'view/inviteFriends/inviteFriends'   // 邀请好友
 
 Vue.use(Router)
 
@@ -45,6 +47,14 @@ export default new Router({
 		{
 			path: '/cdetail',
 			component: Cdetail
+		},
+		{
+			path: '/weightShare',
+			component: WeightShare
+		},
+		{
+			path: '/inviteFriends',
+			component: InviteFriends
 		},
 		{
 			path: '/aftsale',

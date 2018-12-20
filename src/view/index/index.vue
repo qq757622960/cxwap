@@ -19,6 +19,14 @@
                     售后客服
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toWeightShare" class="home-item">
+                    体重分享
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
+                <li @click="toInviteFriends" class="home-item">
+                    邀请好友
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toBridge" class="home-item">
                     桥接页面
                     <i class="icon iconfont icon-jinrujiantou"></i>
@@ -37,6 +45,12 @@
             return {}
         },
         methods: {
+            toWeightShare() {
+                this._toRouter('/weightShare')
+            },
+            toInviteFriends() {
+                this._toRouter('/inviteFriends')
+            },
             toReport() {
                 this._toRouter('/report')
             },
