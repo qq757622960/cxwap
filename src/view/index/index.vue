@@ -15,6 +15,10 @@
                     内容详情
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toAftsale" class="home-item">
+                    售后客服
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toBridge" class="home-item">
                     桥接页面
                     <i class="icon iconfont icon-jinrujiantou"></i>
@@ -44,6 +48,9 @@
             },
             toCdetail() {
                 this._toRouter('/cdetail')
+            },
+            toAftsale() {
+                this._toRouter('/aftsale')
             },
             _toRouter(path) {
                 this.$router.push({

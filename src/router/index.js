@@ -10,6 +10,7 @@ import Wordcloud from 'view/wordcloud/wordcloud'
 import Gauge from 'view/gauge/gauge'
 import Bridge from 'view/bridge/bridge'
 import Cdetail from 'view/cdetail/cdetail'
+import Aftsale from 'view/aftsale/aftsale'
 
 Vue.use(Router)
 
@@ -41,6 +42,10 @@ export default new Router({
 		{
 			path: '/cdetail',
 			component: Cdetail
+		},
+		{
+			path: '/aftsale',
+			component: Aftsale
 		},
 		{
 			path: '/charts',
