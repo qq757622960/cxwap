@@ -10,7 +10,7 @@
                 </ul>
             </div>
             <div class="footer">
-                <a href="tel:400-1122-819">售后服务热线 400-1122-819</a>
+                <a @click.prevent="telPhone" href="tel:400-1122-819">售后服务热线 400-1122-819</a>
             </div>
         </div>
     </sale>
@@ -20,13 +20,19 @@
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
     import Sale from 'base/sale/sale'
+    import {telPhone} from 'common/js/bridge'
 
     export default {
         data () {
-            return {}
+            return {
+                telNumber: 4001122819
+            }
         },
         methods: {
-            
+            telPhone(event) {
+                // 桥接app
+                telPhone(this.telNumber)
+            }
         },
         created() {
         },

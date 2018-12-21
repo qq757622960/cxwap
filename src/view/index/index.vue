@@ -2,6 +2,9 @@
     <div class="home">
         <v-header htitle="首页"></v-header>
         <scroll class="home-cont">
+            <div class="block">
+                <button @click="reload">reload</button>
+            </div>
             <ul class="home-list">
                 <li @click="toReport" class="home-item">
                     报表页面
@@ -39,12 +42,16 @@
 <script type="text/ecmascript-6">
     import VHeader from 'base/vheader/vheader'
     import Scroll from 'base/scroll/scroll'
+    import {ISAPP, testSyn, reload, telPhone, closeWebView, getUserInfo, webDidLoad} from 'common/js/bridge'
 
     export default {
         data() {
             return {}
         },
         methods: {
+            reload() {
+                reload()
+            },
             toWeightShare() {
                 this._toRouter('/weightShare')
             },
@@ -76,7 +83,8 @@
             VHeader,
             Scroll
         },
-        created() {},
+        created() {
+        },
         mounted() {}
     }
 </script>

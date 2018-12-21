@@ -27,6 +27,7 @@
 <script type="text/ecmascript-6">
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
+    import {closeWebView, ISAPP} from 'common/js/bridge'
 
     export default {
         data () {
@@ -34,6 +35,9 @@
         },
         methods: {
             back() {
+                if (ISAPP) {
+                    return closeWebView()    
+                }
                 this.$router.back()
             },
             toWarmRemind() {
@@ -49,9 +53,10 @@
                 this.$router.push({
                     path: path
                 })
-            },
+            }
         },
         created() {
+            
         },
         components: {
             VHeader,

@@ -27,7 +27,7 @@
     import Scroll from 'base/scroll/scroll'
     import Report from 'common/js/report'
     import { getReportList } from 'api/report'
-    import { closeWebView } from 'common/js/bridge'
+    import { closeWebView, ISAPP } from 'common/js/bridge'
     import { mapGetters } from 'vuex'
 
     const START = 70 // 起始位置
@@ -119,8 +119,10 @@
         },
         methods: {
             back(e) {
+                if (ISAPP) {
+                    return closeWebView()    
+                }
                 this.$router.back();
-                // closeWebView()  // 桥接关闭页面
             },
             _getReportList() {
                 this.loading = true
