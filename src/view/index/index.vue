@@ -2,9 +2,9 @@
     <div class="home">
         <v-header htitle="首页"></v-header>
         <scroll class="home-cont">
-            <div class="block">
+            <!-- <div class="block">
                 <button @click="reload">reload</button>
-            </div>
+            </div> -->
             <ul class="home-list">
                 <li @click="toReport" class="home-item">
                     报表页面

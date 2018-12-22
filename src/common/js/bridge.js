@@ -32,8 +32,12 @@ export function telPhone(telNumber) {
 // TODO: 1. 拿到用户信息之后  2. 调用图表接口(该接口需要用户信息)
 export function getUserInfo() {
     dsBridge.call('getUserInfo', function (data) {
-        if (data && typeof data !== 'object') {
-            return JSON.parse(data)
+        if (typeof data !== 'object') {
+            try {
+                return JSON.parse(data)
+            } catch (e) {
+                console.log('JSON格式不正确');
+            }
         }
     })
 }
