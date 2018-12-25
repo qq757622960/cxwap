@@ -3,7 +3,15 @@
         <v-header htitle="内容详情" @back="back"></v-header>
         <scroll class="wrapper" ref="scroll">
             <div class="m-cdetail">
-                <div class="m-title">
+                <div v-html="data && data.content"></div>
+                <div class="m-footer">
+                    <div class="read">
+                        <img src="./read@3x.png" alt="" />
+                        <span>{{ data.views }}人阅读</span>
+                    </div>
+                    <p class="finally">The End</p>
+                </div>
+                <!-- <div class="m-title">
                     <h2>如何劝告父母少吃主食，低碳饮食？</h2>
                     <span>发布于昨天</span>
                 </div>
@@ -20,14 +28,7 @@
                     <img src="./pic@3x.png" alt="" />
                     <p>越来越多的人了解到, 糖和米面等淀粉类主食吃多了, 非常容易导致肥胖, 糖尿病, 脂肪肝, 高血压, 心脏病等等问题</p>
                     <p>可是，为什么我们的父母不愿意听我们的, 我们应该怎么做, 才能慢慢的改变他们的老观念呢？</p>
-                </div>
-                <div class="m-footer">
-                    <div class="read">
-                        <img src="./read@3x.png" alt="" />
-                        <span>1131人阅读</span>
-                    </div>
-                    <p class="finally">The End</p>
-                </div>
+                </div> -->
             </div>
         </scroll>
     </div>
@@ -36,32 +37,48 @@
 <script type="text/ecmascript-6">
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
-    import {ISAPP, closeWebView} from 'common/js/bridge'
+    import { mixin } from 'mixin/index'
+    import { getCmsInfo } from 'api/cdetail'
+    import {trigger, TYPES} from 'common/js/bridge'
+
+    // 'http://172.17.100.31:8082/#/cdetail/detail_id/10';
 
     export default {
         data () {
-            return {}
+            return {
+                data: null
+            }
         },
+        mixins: [mixin],
         methods: {
-            back() {
-                if (ISAPP) {
-                    return closeWebView()
-                }
-                this.$router.back()
-            },
             _refreshScroll() {
+                // imgElemList Android 不支持 Element.forEach, 所以转换类数据
                 let imgElemList = document.querySelectorAll('img')
-                imgElemList.forEach(element => {
+                let imgList = Array.prototype.slice.call(imgElemList)
+
+                imgList.forEach(element => {
                     element.onload = () => {
                         this.$refs.scroll.refresh()
+                    }
+                })
+            },
+            async _getCmsInfo() {
+                let userinfo = await trigger(TYPES.GET_USERINFO)
+                // let userinfo = { token: 'A9566FF19C4BC9A8CB301BCE9C154CA4B4A1008FB37544B09877D9D8790EF300', user_id: '36' }
+                let cid = this.$route.params.id
+
+                getCmsInfo(userinfo, cid).then((res) => {
+                    if (res.data.data.code === 0) {
+                        this.data = res.data.data
                     }
                 })
             }
         },
         created() {
             setTimeout(() => {
+                this._getCmsInfo()
                 this._refreshScroll()    
-            }, 20);
+            }, 20)
         },
         components: {
             VHeader,
@@ -70,7 +87,7 @@
     };
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus">
     .m-wrapper
         position: fixed
         width 100%
@@ -82,8 +99,11 @@
         .wrapper
             height 100%
             overflow hidden
+            img
+                width 100%
         .m-cdetail
             padding 20px
+            
             .m-title
                 position relative
                 padding-bottom 20px

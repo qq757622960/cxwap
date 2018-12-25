@@ -16,6 +16,7 @@ import AftsaleExplain from 'view/aftsaleExplain/aftsaleExplain'
 import ApplyRefund from 'view/applyRefund/applyRefund'
 import WeightShare from 'view/weightShare/weightShare'         // 体重分享
 import InviteFriends from 'view/inviteFriends/inviteFriends'   // 邀请好友
+import ScrollTpl from 'view/scrollTpl/scrollTpl'  
 
 Vue.use(Router)
 
@@ -45,7 +46,7 @@ export default new Router({
 			component: DLoad
 		},
 		{
-			path: '/cdetail',
+			path: '/cdetail/detail_id/:id',
 			component: Cdetail
 		},
 		{
@@ -60,7 +61,8 @@ export default new Router({
 			path: '/aftsale',
 			component: Aftsale,
 			children: [{
-				path: '/warmRemind',
+				path: '/warmRemind',  // 静态路由
+				// path: ':id',          // 动态路由
 				component: WarmRemind
 			}, {
 				path: '/aftsaleExplain',

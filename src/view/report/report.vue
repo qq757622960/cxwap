@@ -14,21 +14,23 @@
                     :settings="chartSettings"
                     :legend-visible="false"
                     :tooltip-visible="false"
-                    :loading="loading">
+                    :loading="loading"
+                    :data-empty="dataEmpty">
                 </ve-line>
+                <p></p>
             </div>
         </scroll>
     </div>
 </template>
-
 
 <script type="text/ecmascript-6">
     import VHeader from 'base/vheader/vheader'
     import Scroll from 'base/scroll/scroll'
     import Report from 'common/js/report'
     import { getReportList } from 'api/report'
-    import { closeWebView, ISAPP } from 'common/js/bridge'
     import { mapGetters } from 'vuex'
+    import { mixin } from 'mixin/index'
+    import {trigger, TYPES} from 'common/js/bridge'
 
     const START = 70 // 起始位置
     const END = 100  // 结束位置
@@ -114,19 +116,17 @@
                 dataEmpty: false
             }
         },
+        mixins: [mixin],
         created() {
             this._getReportList()
         },
         methods: {
-            back(e) {
-                if (ISAPP) {
-                    return closeWebView()    
-                }
-                this.$router.back();
-            },
-            _getReportList() {
-                this.loading = true
-                getReportList().then((res) => {
+            async _getReportList() {
+                // let userinfo = await trigger(TYPES.GET_USERINFO)
+                let userinfo = { token: 'A9566FF19C4BC9A8CB301BCE9C154CA4B4A1008FB37544B09877D9D8790EF300', user_id: '36' }
+                console.log(userinfo)
+                this.loading = true 
+                getReportList(userinfo).then((res) => {
                     this.chartData = this._normalizeList(res.data.data.list)
                     this.dataEmpty = !this.chartData.rows.length
                     this.loading = false

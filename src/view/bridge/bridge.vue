@@ -10,10 +10,16 @@
                     <button @click="telPhone">telPhone</button>
                 </div>
                 <div class="block">
+                    <button @click="closeWebView" ref="close" id="close">异步关闭WebView</button>
+                </div>
+                <div class="block">
+                    <button @click="asynCloseWebView" ref="close" id="close">同步关闭WebView</button>
+                </div>
+                <div class="block">
                     <button @click="isAPP">isAPP</button>
                 </div>
                 <div class="block">
-                    <button @click="closeWebView" ref="close" id="close">关闭WebView</button>
+                    <button @click="getUserInfo">获取用户信息</button>
                 </div>
             </div>
         </scroll>
@@ -23,7 +29,7 @@
 <script type="text/ecmascript-6">
     import VHeader from 'base/vheader/vheader'
     import Scroll from 'base/scroll/scroll'
-    import {ISAPP, closeWebView, reload, telPhone} from 'common/js/bridge'
+    import {isAPP, trigger, TYPES, closeWebView, asynCloseWebView, reload, telPhone, getUserInfo} from 'common/js/bridge'
 
     export default {
         data() {
@@ -31,16 +37,30 @@
         },
         methods: {
             reload() {
-                reload()
+                trigger(TYPES.RELOAD).then((data) => {
+                    console.log('reload' + JSON.stringify(data))
+                })
             },
             telPhone() {
-                telPhone(15365447790)
+                trigger(TYPES.TEL_PHONE, {'number': 15388888888}).then((data) => {
+                    console.log('telPhone' + JSON.stringify(data))
+                })
             },
             isAPP() {
-                alert(IS_APP)
+                trigger(TYPES.ISAPP).then((data) => {
+                    console.log('isAPP' + JSON.stringify(data))
+                })
             },
             closeWebView() {
-                closeWebView()
+                trigger(TYPES.CLOSE_WEBVIEW, false)
+            },
+            asynCloseWebView() {
+                asynCloseWebView()
+            },
+            getUserInfo() {
+                trigger(TYPES.GET_USERINFO).then((data) => {
+                    console.log('getUserInfo' + JSON.stringify(data))
+                })
             },
             back() {
                 this.$router.back()
@@ -51,7 +71,7 @@
             Scroll
         },
         created() {
-            
+            console.log('bridge页面加载...')
         },
         mounted() {}
     }

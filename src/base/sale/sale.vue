@@ -5,6 +5,7 @@
             <scroll class="wrapper">
                 <div>
                     <slot></slot>
+                    <div style="height:60px;"></div>
                 </div>
             </scroll>
         </div>
@@ -46,13 +47,14 @@
         bottom 0
         left 0
         z-index 10
+        width 100%
         background-color $color-background
     .wrapper
-        padding-top 60px
+        margin-top 60px
         height 100%
         overflow hidden
         div
-            height 100%
+            // height 100% // 此处高度 100% 会导致页面滑不动
 
     .slide-enter-active, .slide-leave-active
         transition: all 0.3s

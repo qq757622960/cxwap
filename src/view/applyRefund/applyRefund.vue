@@ -72,13 +72,13 @@
         .list
             display flex
             flex-wrap wrap
-            border-top 1px solid #ccc
+            border-top 0.5px solid #ccc
             .item
                 width 33.33%
                 min-height 185px
-                padding 20px 10px 20px 10px
-                border-right  1px solid #ccc
-                border-bottom 1px solid #ccc
+                padding 20px 10px 10px 10px
+                border-right  0.5px solid #ccc
+                border-bottom 0.5px solid #ccc
                 text-align center
                 img
                     width 43px
@@ -88,7 +88,7 @@
                     min-height 70px
                     line-height 1.2
                     padding-top 16px
-                    font-size 16px
+                    font-size 15px
                     color #000
                     text-align left
                 p

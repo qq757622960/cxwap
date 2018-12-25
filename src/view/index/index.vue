@@ -68,7 +68,7 @@
                 this._toRouter('/bridge')
             },
             toCdetail() {
-                this._toRouter('/cdetail')
+                this._toRouter('/cdetail/detail_id/4')
             },
             toAftsale() {
                 this._toRouter('/aftsale')

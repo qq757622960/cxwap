@@ -33,6 +33,7 @@ module.exports = {
       'components': resolve('src/components'),
       'view': resolve('src/view'),
       'store': resolve('src/store'),
+      'mixin': resolve('src/mixin')
     }
   },
   module: {

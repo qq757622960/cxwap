@@ -59,7 +59,7 @@
             p,
             li
                 text-indent 2em
-                font-size 16px
+                font-size 15px
                 color #666666
             p
                 padding-top 25px

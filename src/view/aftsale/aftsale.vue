@@ -16,10 +16,10 @@
                         温馨提醒
                         <i class="icon iconfont icon-jinrujiantou"></i>
                     </li>
+                    <!-- <li class="sale-item" v-for="n in 100" :key="n">{{ n }}</li> -->
                 </ul>
             </div>
         </scroll>
-
         <router-view></router-view>
     </div>
 </template>
@@ -27,29 +27,25 @@
 <script type="text/ecmascript-6">
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
-    import {closeWebView, ISAPP} from 'common/js/bridge'
+    import { mixin } from 'mixin/index'
 
     export default {
         data () {
             return {}
         },
+        mixins: [mixin],
         methods: {
-            back() {
-                if (ISAPP) {
-                    return closeWebView()    
-                }
-                this.$router.back()
-            },
             toWarmRemind() {
-                this._toRouter('warmRemind')
+                this._toRouter('/warmRemind')
             },
             toAftsaleExplain() {
-                this._toRouter('aftsaleExplain')
+                this._toRouter('/aftsaleExplain')
             },
             toApplyRefund() {
-                this._toRouter('applyRefund')
+                this._toRouter('/applyRefund')
             },
             _toRouter(path) {
+                // 编程式跳转
                 this.$router.push({
                     path: path
                 })

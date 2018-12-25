@@ -31,6 +31,14 @@
 
     export default {
         data () {
+            this.result = device()
+            this.imgdata = [
+                require('./1.jpg'),
+                require('./2.jpg'),
+                require('./3.jpg'),
+                require('./4.jpg'),
+                require('./5.jpg')
+            ]
             return {}
         },
         methods: {
@@ -53,14 +61,9 @@
             }
         },
         created() {
-            this.result = device()
-            this.imgdata = [
-                require('./1.jpg'),
-                require('./2.jpg'),
-                require('./3.jpg'),
-                require('./4.jpg'),
-                require('./5.jpg')
-            ]
+            console.log(window.history.length)
+            console.log(this.$router)
+            console.log(this.$route)
         },
         components: {
             VHeader,

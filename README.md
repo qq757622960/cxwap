@@ -20,6 +20,10 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+> 工作进展
+* 2018.12.22 
+* 已经进展到与app进行桥接, 桥接过后->获取用户信息->进行接口调用
+
 > 桥接
 [DSBridge](https://blog.csdn.net/duwen90/article/details/78413069)
 ```
@@ -61,6 +65,90 @@ dsBridge.call("testAsyn", {msg: "testAsyn"}, function (v) {
 
 修改(Actions) -> 数据(state) -> 显示(View)
 
+> Vue Router
+
+将组件映射到路由, 然后告诉 Vue Router 在哪里渲染它们。
+
+```
+使用路由:
+1. 定义(路由)组件
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+2. 定义路由
+const routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+
+3. 创建 router 实例
+const router = new VueRouter({
+  routes // (缩写) 相当于 routes: routes
+})
+
+4. 挂在到根实例中
+const app = new Vue({
+  router
+}).$mount('#app')
+
+this.$router 访问路由器
+this.$route 访问当前路由(和 this.$router.currentRoute 相同)
+
+动态路径参数
+
+我们经常需要把某种模式匹配到的所有路由, 全部映射到同一个组件。
+例如, 我们有一个 User 组件, 对于所有 ID 各不相同的用户, 都要使用这个组件来渲染。
+
+如下
+routes: [
+    // 动态路径参数, 以冒号开头
+    { path: '/user/:id', component: User }
+]
+
+/user/foo
+/user/bar
+
+都映射到同一个组件
+
+一个 "路径参数" 使用冒号 : 标记。当匹配到一个路由时, 参数值会被设置到 this.$route.params, 可以在每个组件内使用。
+
+```
+
+> 日志
+
+2018.12.25
+调整详情页数据问题
+
+2018.12.24
+
+1. 所有桥接回退按钮功能编写:  里面用了一个 mixin 完成
+
+2. 获取用户登录信息, 进行接口请求   已经测试了报表页面已经完成
+
+3. 内容详情页面, 进行路由id获取
+
+===桥接页面===
+详情页面
+报表页面
+售后页面
+
+===插件===
+调试 vconsole
+
+===数据处理===
+报表暂无数据处理
+
+===申请退换货===
+scroll 失效
+最后解决问题点: 居然出现在 div { height: 100% }
+我解决问题的思路:  先写了一个对的 bs 页面-> 然后放在当前页面(当然是对的啦，我好蠢~) -> 这个问题居然出现在 css 中, 下次注意！！！
+
+=== 详情页面路由传递 ===
+http://172.17.100.31:8082/#/cdetail/detail_id/10
+问题: 我要配置一个 参数为 属性名为: detail_id 值为 : 10 的路由
+
+解决 android 里面不能调用 forEach 因为 不支持类数组
+Array.prototype.slice.call(ArrayLike)
 
 
 * 使用

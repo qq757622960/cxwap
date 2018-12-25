@@ -38,6 +38,7 @@
         padding-right 10px
         box-shadow 0 1px 3px #ccc
         background-color #fff
+        // z-index: 2
         // background-color rgba(255,255,255,.6) 使用透明色, 会导致字体重合
         &::after
             content ''
