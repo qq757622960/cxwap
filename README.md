@@ -116,8 +116,62 @@ routes: [
 
 > 日志
 
+获取接口步骤:
+先去获取用户信息
+获取签名
+在去请求接口
+
 2018.12.25
 调整详情页数据问题
+
+1. 试着去处理边界问题
+2. 加载进度条添加
+3. 没有数据显示
+4. 解决没有数据显示问题: 问题原因, 明明有数据, 确还是先显示暂无数据虽然我也没有搞明白到底是什么原因, 最后的解决方法, 也是模模糊糊...
+5. 解决富文本加载图片, scroll 无法获取高度问题, 渲染原理->dom加载->dq('img')->onload->refresh
+6. 问题: 请求接口获取报表数据, ios 可以, android 不可以, 报错是 Promise, 一开始以为是 android 不支持 promise, 然后添加了 promise 包, 继续排查, 然后发现还不可以, 最后定位在发现算出来的 ===签名不一致===, 最后定位在签名问题, 最后发现 ios 返回的参数为 { code: "0", sign: "xxxx", user_id: "xxx" }, android: { "sign": "xxx", "user_id": "xxxx" }, 最后以为是 JSON 格式的问题, 因为 ios typeof obj 返回 object, 而 android 返回 string, 所以我添加了 
+
+```
+if (typeof data !== 'obj') {
+    data = JSON.parse(obj)
+}
+```
+
+后来发现问题还是不可以, 最后想到, ios 与 android 的签名不一致, 是不是少传了参数, 最后发现, 居然真是 android 少传了一个参数...
+
+这个问题的由来是由 签名 引起的, 下次发现问题, 应该从 签名 方法开始查找, 应该快速定位问题。。。
+
+总结: 今天解决了三个问题
+1. 有数据的情况下, 还会显示暂无数据主要代码如下, 问题是由于 异步加载 数据问题
+```
+<div v-show="content"></div>
+<div v-show="!content"></div>
+
+由于数据是异步加载的, 开始加载 content 确实没有数据, 所以就显示了 没有数据
+既然他是异步加载的, 我就先判断 data(content)的父级, 这样就不会有问题了
+
+// 这个时候 data 的数据已经来了, 所以下面就不会有问题
+<div v-if="data">
+    <div v-show="content"></div>
+    <div v-show="!content"></div>
+</div>
+```
+
+2. scroll 解决富文本里面图片问题, 这个问题是由于加载顺序的问题, DOM 加载问题, 当图片还没有加载出来的时候, 去 dqall('img'), 由于图片还没有加载完成.
+
+
+
+```
+// 外层用一个 data 进行控制
+<div class="m-cdetail" v-show="data">
+    // 有数据
+    <div v-show="content">
+        <div v-html="content"></div>
+    </div>
+    // 没有数据
+    <div v-show="!content" class="no-data">暂无数据</div>
+</div>
+```
 
 2018.12.24
 

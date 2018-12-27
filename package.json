@@ -12,6 +12,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
+    "es6-promise": "^4.2.5",
     "fastclick": "^1.0.6",
     "lodash": "^4.17.11",
     "v-charts": "^1.19.0",

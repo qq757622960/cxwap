@@ -34,6 +34,9 @@ export function trigger(name, param = {}, async = true) {
     }
     return new Promise(function(resolve, reject) { 
         dsBridge.call(name, param, function(data) {
+            if (typeof data !== 'object') {
+                data = JSON.parse(data)
+            }
             resolve(data)
         })
     })

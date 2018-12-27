@@ -77,6 +77,8 @@
                 width 33.33%
                 min-height 185px
                 padding 20px 10px 10px 10px
+                border-right  1px solid #ccc
+                border-bottom 1px solid #ccc
                 border-right  0.5px solid #ccc
                 border-bottom 0.5px solid #ccc
                 text-align center

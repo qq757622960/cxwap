@@ -122,9 +122,8 @@
         },
         methods: {
             async _getReportList() {
-                // let userinfo = await trigger(TYPES.GET_USERINFO)
-                let userinfo = { token: 'A9566FF19C4BC9A8CB301BCE9C154CA4B4A1008FB37544B09877D9D8790EF300', user_id: '36' }
-                console.log(userinfo)
+                let userinfo = await trigger(TYPES.GET_USERINFO)
+                // let userinfo = { token: '4865944DEFCA777D5E3FC07DF9114E619A55E682544C4BF1F3C670CAB1E2E8A6', user_id: '35' }
                 this.loading = true 
                 getReportList(userinfo).then((res) => {
                     this.chartData = this._normalizeList(res.data.data.list)

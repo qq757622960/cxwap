@@ -11,7 +11,7 @@ import 'common/stylus/index.styl'
 import 'v-charts/lib/style.css'
 import _ from 'lodash'
 
-// import vConsole from 'vconsole'
+import vConsole from 'vconsole'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body)
