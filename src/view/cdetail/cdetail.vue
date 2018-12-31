@@ -77,10 +77,10 @@
             },
             async _getCmsInfo() {
                 this.loading = true
-                let userinfo = await trigger(TYPES.GET_USERINFO)
-                // let userinfo = { token: '963EF743A722C4C6CC552DECEC9DE71444AD3DDC1A08C486D43A04C6ABC40EFB', user_id: '35' }
+                // let userinfo = await trigger(TYPES.GET_USERINFO)
+                let userinfo = { token: '963EF743A722C4C6CC552DECEC9DE71444AD3DDC1A08C486D43A04C6ABC40EFB', user_id: '35' }
                 let cid = this.$route.params.id
-                // console.log(userinfo, cid)
+                console.log(userinfo, cid)
 
                 getCmsInfo(userinfo, cid).then((res) => {
                     if (res.data.data.code === 0) {
@@ -96,12 +96,7 @@
             }
         },
         created() {
-            // 我先去获取文章列表, 拿到文章之后, 显示在列表中(里面有图片之类的)
-            // 这时候我去调用重置页面, 
             this._getCmsInfo()
-            // setTimeout(() => {
-            //     this._refreshScroll()    
-            // }, 500)
         },
         components: {
             VHeader,

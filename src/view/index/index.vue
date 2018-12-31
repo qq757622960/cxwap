@@ -30,6 +30,10 @@
                     邀请好友
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toLife" class="home-item">
+                    生命周期
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toBridge" class="home-item">
                     桥接页面
                     <i class="icon iconfont icon-jinrujiantou"></i>
@@ -72,6 +76,9 @@
             },
             toAftsale() {
                 this._toRouter('/aftsale')
+            },
+            toLife() {
+                this._toRouter('/life')
             },
             _toRouter(path) {
                 this.$router.push({

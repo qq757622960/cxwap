@@ -3,19 +3,22 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
-import VCharts from 'v-charts'
 import fastclick from 'fastclick'
 import router from './router'
 import store from './store'
 import 'common/stylus/index.styl'
 import 'v-charts/lib/style.css'
-import _ from 'lodash'
+
+// import VCharts from 'v-charts'
+// import VeLine from 'v-charts/lib/line.common'
+// import _ from 'lodash'
 
 import vConsole from 'vconsole'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body)
-Vue.use(VCharts)
+// Vue.component(VeLine.name, VeLine)
+// Vue.use(VCharts)
 
 /* eslint-disable no-new */
 new Vue({

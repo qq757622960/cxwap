@@ -20,7 +20,16 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+> 安装
+1. sudo cnpm install vue-cli -g
+2. vue init webpack vuetmp
+
 > 工作进展
+* 2018.12.27
+* 1. wap 处理图表每页显示7条数据
+* 2. wap 优化图表组件, 按需加载
+* 3. wap 路由组件懒加载
+
 * 2018.12.22 
 * 已经进展到与app进行桥接, 桥接过后->获取用户信息->进行接口调用
 
@@ -296,3 +305,8 @@ setting: {
     :extend="xxx">
 </v-line>
 ```
+
+> 优化
+1. 路由使用懒加载可以快一秒
+2. 使用图表按需加载, 也可以快一秒
+3. main.js 中引用的都是全局插件, 可以将通用 js 引用在里面

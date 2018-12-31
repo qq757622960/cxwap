@@ -18,5 +18,5 @@ export default class Report {
  */
 function formatDate(temp) {
     let date = new Date(temp * 1000)
-    return `${date.getMonth() + 1}/${date.getDay()}\n${date.getFullYear()}`
+    return `${date.getMonth() + 1}/${date.getDate()}\n${date.getFullYear()}`
 }

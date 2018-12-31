@@ -8,6 +8,10 @@
                     <h2>体重曲线</h2>
                     <span>/kg</span>
                 </div>
+                <!-- <ve-line
+                    :data="chartData"
+                    :extend="chartExtend">
+                </ve-line> -->
                 <ve-line
                     :data="chartData"
                     :extend="chartExtend"
@@ -17,7 +21,6 @@
                     :loading="loading"
                     :data-empty="dataEmpty">
                 </ve-line>
-                <p></p>
             </div>
         </scroll>
     </div>
@@ -31,82 +34,77 @@
     import { mapGetters } from 'vuex'
     import { mixin } from 'mixin/index'
     import {trigger, TYPES} from 'common/js/bridge'
+    import VCharts from 'v-charts'
+    import VeLine from 'v-charts/lib/line.common'
 
-    const START = 70 // 起始位置
-    const END = 100  // 结束位置
     const RED_LIGHT = '#fe7596'
     const RED_DARK = '#fedce5'
 
+    // const DATA_FROM_BACKEND = {
+    //     columns: ['date', 'PV'],
+    //     rows: [
+    //         { 'date': '2018-05-22', 'PV': 32371 },
+    //         { 'date': '2018-05-23', 'PV': 12328 },
+    //         { 'date': '2018-05-24', 'PV': 92381 },
+    //         { 'date': '2018-05-25', 'PV': 92381 },
+    //         { 'date': '2018-05-26', 'PV': 92381 },
+    //         { 'date': '2018-05-27', 'PV': 92381 },
+    //         { 'date': '2018-05-28', 'PV': 92381 },
+    //         { 'date': '2018-05-29', 'PV': 92381 }
+    //     ]
+    // }
+    // const EMPTY_DATA = {
+    //     columns: [],
+    //     rows: []
+    // }
+    // export default {
+    //     data () {
+    //         this.chartExtend = {
+    //             dataZoom: [{
+    //                 type: 'inside',
+    //                 start: 50,
+    //                 end: 100
+    //             }]
+    //         }
+    //         this.chartSettings = {
+    //             yAxisType: ['0,0a']
+    //         }
+    //         return {
+    //             chartData: {
+    //                 columns: [],
+    //                 rows: []
+    //             },
+    //             loading: false,
+    //             dataEmpty: false
+    //         }
+    //     },
+    //     methods: {
+    //         back() {},
+    //         getData () {
+    //             this.loading = true
+    //             // ajax get data ....
+    //             setTimeout(() => {
+    //                 this.chartData = DATA_FROM_BACKEND
+    //                 this.dataEmpty = !this.chartData.rows.length
+    //                 this.loading = false
+    //                 // this._setCharts()
+    //             }, 1000)
+    //         }
+    //     },
+    //     created () {
+    //         this.getData()
+    //     },
+    //     components: {
+    //         VHeader,
+    //         Scroll
+    //     }
+    // }
+
     export default {
+        
         data () {
-            let me = this
-            this.chartSettings = {
-                yAxisType: ['0.0'],
-                area: true
-            }
-            this.chartExtend = {
-                dataZoom: [{
-                    type: 'inside',
-                    start: START,
-                    end: END
-                }],
-                title: {
-                    text: '向右滑动查看更多→',
-                    bottom: '10',
-                    left: 'center',
-                    textStyle: {
-                        color: '#dddddd',
-                        fontSize: '14px',
-                        align: 'center'
-                    }
-                },
-                xAxis: {
-                    axisLabel: {
-                        interval: 0,
-                        formatter(value) {
-                            return value
-                        }
-                    }
-                },
-                series: {
-                    type: 'line',
-                    symbol: 'circle',
-                    symbolSize: 6,        // 设置指标大小
-                    areaStyle: {           // 设置区域颜色
-                        color: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 0,
-                            y2: 1,
-                            colorStops: [
-                                {
-                                    offset: 0, color: RED_DARK // 0% 处的颜色
-                                }, 
-                                {
-                                    offset: 1, color: RED_LIGHT // 100% 处的颜色
-                                }
-                            ],
-                            globalCoord: false              // 缺省为 false
-                        }
-                    },
-                    lineStyle: {            // 设置线的颜色
-                        width: 1,
-                        color: RED_LIGHT
-                    },
-                    itemStyle: {
-                        normal: {
-                            borderWidth: 2,
-                            borderColor: RED_LIGHT,
-                            color: RED_LIGHT
-                        }
-                    },
-                    label: {
-                        show: true,
-                        color: RED_LIGHT
-                    }
-                }
-            }
+            this.chartSettings = {}
+            this.chartExtend = {}
             return {
                 chartData: {
                     columns: [],
@@ -123,11 +121,14 @@
         methods: {
             async _getReportList() {
                 let userinfo = await trigger(TYPES.GET_USERINFO)
-                // let userinfo = { token: '4865944DEFCA777D5E3FC07DF9114E619A55E682544C4BF1F3C670CAB1E2E8A6', user_id: '35' }
+                console.log(userinfo)
+                // let userinfo = { token: '8FD45268F99E707A64B6E8A19531FD7AE2CB6DD247A91BDB65830B5A5922D807', user_id: '42' }
                 this.loading = true 
                 getReportList(userinfo).then((res) => {
                     this.chartData = this._normalizeList(res.data.data.list)
                     this.dataEmpty = !this.chartData.rows.length
+                    this._computedPosition(this.chartData.rows.length)
+                    this._setCharts()
                     this.loading = false
                 })
             },
@@ -143,6 +144,82 @@
                     }))
                 })
                 return chartData
+            },
+            _computedPosition(length) {
+                this.end = 100
+                length <= 7 
+                    ? (this.start = 0) 
+                    : (this.start = (100 - Math.floor(7 / length * 100)))
+            },
+            _setCharts() {
+                let me = this
+                this.chartSettings = {
+                    yAxisType: ['0.0'],
+                    area: true
+                }
+                this.chartExtend = {
+                    dataZoom: [{
+                        type: 'inside',
+                        start: 20,
+                        end: 100
+                    }],
+                    title: {
+                        text: '向右滑动查看更多→',
+                        bottom: '10',
+                        left: 'center',
+                        textStyle: {
+                            color: '#dddddd',
+                            fontSize: '14px',
+                            align: 'center'
+                        }
+                    },
+                    xAxis: {
+                        axisLabel: {
+                            interval: 0,
+                            formatter(value) {
+                                return value
+                            }
+                        }
+                    },
+                    series: {
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 6,        // 设置指标大小
+                        areaStyle: {           // 设置区域颜色
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0, color: RED_DARK // 0% 处的颜色
+                                    }, 
+                                    {
+                                        offset: 1, color: RED_LIGHT // 100% 处的颜色
+                                    }
+                                ],
+                                globalCoord: false              // 缺省为 false
+                            }
+                        },
+                        lineStyle: {            // 设置线的颜色
+                            width: 1,
+                            color: RED_LIGHT
+                        },
+                        itemStyle: {
+                            normal: {
+                                borderWidth: 2,
+                                borderColor: RED_LIGHT,
+                                color: RED_LIGHT
+                            }
+                        },
+                        label: {
+                            show: true,
+                            color: RED_LIGHT
+                        }
+                    }
+                }
             }
         },
         computed: {
@@ -150,7 +227,8 @@
         },
         components: {
             VHeader,
-            Scroll
+            Scroll,
+            VeLine
         }
     }
 </script>
