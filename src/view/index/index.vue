@@ -34,6 +34,10 @@
                     购买体脂称
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toScaleExplain" class="home-item">
+                    体脂称说明
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toLife" class="home-item">
                     生命周期
                     <i class="icon iconfont icon-jinrujiantou"></i>
@@ -53,6 +57,7 @@
     import {ISAPP, testSyn, reload, telPhone, closeWebView, getUserInfo, webDidLoad} from 'common/js/bridge'
 
     export default {
+        name: '首页',
         data() {
             return {}
         },
@@ -86,6 +91,9 @@
             },
             toBuyScale() {
                 this._toRouter('/buyScale')
+            },
+            toScaleExplain() {
+                this._toRouter('/scaleExplain')
             },
             _toRouter(path) {
                 this.$router.push({

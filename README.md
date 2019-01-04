@@ -25,6 +25,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 2. vue init webpack vuetmp
 
 > 工作进展
+
 * 2018.12.27
 * 1. wap 处理图表每页显示7条数据
 * 2. wap 优化图表组件, 按需加载
@@ -129,6 +130,12 @@ routes: [
 先去获取用户信息
 获取签名
 在去请求接口
+
+2019.1.4
+读取后台返回的 图片地址, http://.... 报错 403
+
+解决方法
+<meta name="referrer" content="no-referrer" />
 
 2018.12.25
 调整详情页数据问题

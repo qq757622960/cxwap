@@ -61,6 +61,10 @@ export default new Router({
 			component: resolve => require(['view/buyScale/buyScale'], resolve)
 		},
 		{
+			path: '/scaleExplain',
+			component: resolve => require(['view/scaleExplain/scaleExplain'], resolve)
+		},
+		{
 			path: '/aftsale',
 			component: resolve => require(['view/aftsale/aftsale'], resolve),
 			children: [{
