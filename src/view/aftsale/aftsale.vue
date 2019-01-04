@@ -16,11 +16,10 @@
                         温馨提醒
                         <i class="icon iconfont icon-jinrujiantou"></i>
                     </li>
-                    <!-- <li class="sale-item" v-for="n in 100" :key="n">{{ n }}</li> -->
                 </ul>
             </div>
         </scroll>
-        <router-view></router-view>
+        <router-view :data="data"></router-view>
     </div>
 </template>
 
@@ -28,10 +27,13 @@
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
     import { mixin } from 'mixin/index'
+    import { getAfterSaleList } from 'api/astsale'
 
     export default {
         data () {
-            return {}
+            return {
+                data: null
+            }
         },
         mixins: [mixin],
         methods: {
@@ -45,14 +47,21 @@
                 this._toRouter('/applyRefund')
             },
             _toRouter(path) {
-                // 编程式跳转
-                this.$router.push({
+                this.$router.push({  // 编程式跳转
                     path: path
+                })
+            },
+            _getAfterSaleList() {
+                getAfterSaleList().then((res) => {
+                    let data = res.data
+                    if (data.ret === 200) {
+                        this.data = data.data
+                    } 
                 })
             }
         },
         created() {
-            
+            this._getAfterSaleList()
         },
         components: {
             VHeader,

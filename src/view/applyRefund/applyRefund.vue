@@ -1,7 +1,8 @@
 <template>
     <sale htitle="申请退换货">
         <div class="wrapper">
-            <h2>申请退换货流程:</h2>
+            <div class="refund-cont" v-html="data && data['2'] && data[2].content"></div>
+            <!-- <h2>申请退换货流程:</h2>
             <ul class="list">
                 <li class="item">
                     <img src="./tuihuanhuo@3x.png" alt="" />
@@ -33,7 +34,7 @@
                     <h3>6.回复审核结果</h3>
                     <p>回复审核最终处理结果，退款时效为3-5个工作日</p>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </sale>
 </template>
@@ -44,6 +45,12 @@
     import Sale from 'base/sale/sale'
 
     export default {
+        props: {
+            data: {
+                default: {},
+                type: Object
+            }
+        },
         data () {
             return {}
         },
@@ -64,37 +71,42 @@
     .wrapper
         min-height 100%
         background-color #fff
-        h2
-            padding 24px 16px 20px
-            font-size 16px
-            font-weight 400
-            color #000
-        .list
-            display flex
-            flex-wrap wrap
-            border-top 0.5px solid #ccc
-            .item
-                width 33.33%
-                min-height 185px
-                padding 20px 10px 10px 10px
-                border-right  1px solid #ccc
-                border-bottom 1px solid #ccc
-                border-right  0.5px solid #ccc
-                border-bottom 0.5px solid #ccc
-                text-align center
-                img
-                    width 43px
-                    height 43px
-                    margin 0 auto
-                h3
-                    min-height 70px
-                    line-height 1.2
-                    padding-top 16px
-                    font-size 15px
-                    color #000
-                    text-align left
-                p
-                    font-size 14px
-                    color #666
-                    text-align left
+        .refund-cont
+            img
+                width 100% !important
+                height auto
+        
+        // h2
+        //     padding 24px 16px 20px
+        //     font-size 16px
+        //     font-weight 400
+        //     color #000
+        // .list
+        //     display flex
+        //     flex-wrap wrap
+        //     border-top 0.5px solid #ccc
+        //     .item
+        //         width 33.33%
+        //         min-height 185px
+        //         padding 20px 10px 10px 10px
+        //         border-right  1px solid #ccc
+        //         border-bottom 1px solid #ccc
+        //         border-right  0.5px solid #ccc
+        //         border-bottom 0.5px solid #ccc
+        //         text-align center
+        //         img
+        //             width 43px
+        //             height 43px
+        //             margin 0 auto
+        //         h3
+        //             min-height 70px
+        //             line-height 1.2
+        //             padding-top 16px
+        //             font-size 15px
+        //             color #000
+        //             text-align left
+        //         p
+        //             font-size 14px
+        //             color #666
+        //             text-align left
 </style>

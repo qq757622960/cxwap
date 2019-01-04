@@ -57,7 +57,6 @@
     import {ISAPP, testSyn, reload, telPhone, closeWebView, getUserInfo, webDidLoad} from 'common/js/bridge'
 
     export default {
-        name: '首页',
         data() {
             return {}
         },

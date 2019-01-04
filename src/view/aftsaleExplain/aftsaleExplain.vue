@@ -1,7 +1,8 @@
 <template>
-    <sale htitle="售后说明">
+    <sale htitle="售后政策说明">
         <div class="cont">
-            <ul class="list">
+            <div v-html="data && data[1] && data[1].content"></div>
+            <!-- <ul class="list">
                 <li class="item">
                     <span>1.</span>
                     因产品质量问题，自收到产品签收日起3个工作日内联系售后热线中心处理
@@ -18,7 +19,7 @@
                     <span>4.</span>
                     在商品无任何情况下，自实际收到商品之日起7日内，商品往返运费由客户承担
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </sale>
 </template>
@@ -29,6 +30,12 @@
     import Sale from 'base/sale/sale'
 
     export default {
+        props: {
+            data: {
+                default: {},
+                type: Object
+            }
+        },
         data () {
             return {}
         },
@@ -38,6 +45,7 @@
             }
         },
         created() {
+            console.log(this.data)
         },
         components: {
             VHeader,

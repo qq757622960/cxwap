@@ -1,7 +1,8 @@
 <template>
     <sale htitle="温馨提醒">
         <div class="wrapper">
-            <div class="content">
+            <div v-html="data && data[0] && data[0].content"></div>
+            <!-- <div class="content">
                 <h2 class="title">尊敬的客户: </h2>
                 <p>您好！为了保证您的使用效果您需要注意以下几点：</p>
                 <ul>
@@ -11,7 +12,7 @@
             </div>
             <div class="footer">
                 <a @click.prevent="telPhone" href="tel:400-1122-819">售后服务热线 400-1122-819</a>
-            </div>
+            </div> -->
         </div>
     </sale>
 </template>
@@ -23,6 +24,12 @@
     import {telPhone} from 'common/js/bridge'
 
     export default {
+        props: {
+            data: {
+                default: {},
+                type: Object
+            }
+        },
         data () {
             return {
                 telNumber: 4001122819
@@ -34,7 +41,19 @@
                 telPhone(this.telNumber)
             }
         },
+        mounted() {
+            this.$nextTick(() => {
+                let link = this.$el.querySelector('.footer a')
+                link.addEventListener('click', function(e) {
+                    let href = e.target.href
+                    href = href.replace('tel:', '')
+                    telPhone(href)
+                    e.preventDefault()
+                })
+            })
+        },
         created() {
+            
         },
         components: {
             VHeader,

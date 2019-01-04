@@ -4,7 +4,7 @@
         <scroll class="wrapper" ref="scroll">
             <div>
                 <div v-show="content" class="img-wrapper">
-                    <img :src="content" alt="" />
+                    <img :src="content" alt="" @load="imgLoader" />
                 </div>
             </div>
             <div class="loading-container" v-show="loading">
@@ -43,6 +43,9 @@
                         this.loading = false
                     } 
                 })
+            },
+            imgLoader() {
+                this.$refs.scroll.refresh()
             }
         },
         components: {
