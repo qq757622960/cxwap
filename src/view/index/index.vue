@@ -30,6 +30,10 @@
                     邀请好友
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toBuyScale" class="home-item">
+                    购买体脂称
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toLife" class="home-item">
                     生命周期
                     <i class="icon iconfont icon-jinrujiantou"></i>
@@ -79,6 +83,9 @@
             },
             toLife() {
                 this._toRouter('/life')
+            },
+            toBuyScale() {
+                this._toRouter('/buyScale')
             },
             _toRouter(path) {
                 this.$router.push({

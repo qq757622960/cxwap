@@ -42,7 +42,6 @@ export default new Router({
 		},
 		{
 			path: '/cdetail/detail_id/:id',
-			// component: resolve => require(['view/index/index'], resolve)
 			component: resolve => require(['view/cdetail/cdetail'], resolve)
 		},
 		{
@@ -56,6 +55,10 @@ export default new Router({
 		{
 			path: '/life',
 			component: resolve => require(['view/life/life'], resolve)
+		},
+		{
+			path: '/buyScale',
+			component: resolve => require(['view/buyScale/buyScale'], resolve)
 		},
 		{
 			path: '/aftsale',

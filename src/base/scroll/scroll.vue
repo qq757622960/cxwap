@@ -138,7 +138,7 @@
             },
             refresh() {
                 // 代理 better-scroll 的 refresh 方法
-                console.log('refresh')
+                // console.log('refresh')
                 this.scroll && this.scroll.refresh()
             },
             scrollTo() {

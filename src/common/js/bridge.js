@@ -19,7 +19,8 @@ export const TYPES = {
     TEL_PHONE: 'telPhone',
     GET_USERINFO: 'getUserInfo',
     RELOAD: 'reload',
-    ISAPP: 'isAPP'
+    ISAPP: 'isAPP',
+    BUY_SCALE: 'buyScale'
 }
 
 /**

@@ -13,7 +13,7 @@ import 'v-charts/lib/style.css'
 // import VeLine from 'v-charts/lib/line.common'
 // import _ from 'lodash'
 
-import vConsole from 'vconsole'
+// import vConsole from 'vconsole'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body)
