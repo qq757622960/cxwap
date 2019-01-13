@@ -19,6 +19,9 @@
                     <button @click="isAPP">isAPP</button>
                 </div>
                 <div class="block">
+                    <button @click="consultant">进入顾问咨询页面</button>
+                </div>
+                <div class="block">
                     <button @click="getUserInfo">获取用户信息</button>
                 </div>
             </div>
@@ -36,6 +39,11 @@
             return {}
         },
         methods: {
+            consultant() {
+                trigger(TYPES.CONSULTANT).then((data) => {
+                    console.log('consultant' + JSON.stringify(data))
+                })
+            },
             reload() {
                 trigger(TYPES.RELOAD).then((data) => {
                     console.log('reload' + JSON.stringify(data))

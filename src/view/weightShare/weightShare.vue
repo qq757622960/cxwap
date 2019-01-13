@@ -1,7 +1,7 @@
 <template>
     <scroll class="wrapper" ref="scroll">
         <div>
-            <div class="share-img">
+            <!-- <div class="share-img">
                 <img src="./img@3x.png" alt="" />
             </div>
             <div class="share-cont">
@@ -14,7 +14,7 @@
                     <img src="./erweima.png" alt="" />
                     <p>长按识别途中二维码</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </scroll>
 </template>

@@ -30,6 +30,14 @@ export default new Router({
 			component: resolve => require(['view/index/index'], resolve)
 		},
 		{
+			path: '/healthReport',
+			component: resolve => require(['view/healthReport/healthReport'], resolve)
+		},
+		{
+			path: '/healthReportDetail/:id/:title',
+			component: resolve => require(['view/healthReportDetail/healthReportDetail'], resolve)
+		},
+		{
 			path: '/report',
 			component: resolve => require(['view/report/report'], resolve),
 			query: {
@@ -63,6 +71,10 @@ export default new Router({
 		{
 			path: '/scaleExplain',
 			component: resolve => require(['view/scaleExplain/scaleExplain'], resolve)
+		},
+		{
+			path: '/imgtest',
+			component: resolve => require(['view/imgtest/imgtest'], resolve)
 		},
 		{
 			path: '/aftsale',

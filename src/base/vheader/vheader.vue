@@ -28,16 +28,19 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+    @import "~common/stylus/variable"
     .m-head
         position fixed
         top 0
         left 0
         width 100%
-        height 50px
+        height $header-top
         padding-left 10px
         padding-right 10px
         box-shadow 0 1px 3px #ccc
         background-color #fff
+        display: flex
+        align-items: center
         // z-index: 2
         // background-color rgba(255,255,255,.6) 使用透明色, 会导致字体重合
         &::after
@@ -55,7 +58,7 @@
                 transform-origin: 50% 0%;
         .m-head-back,
         .m-head-right
-            padding 10px
+            padding-left: 10px
             margin-right -10px
             margin-left -10px
             font-weight 200
@@ -69,7 +72,7 @@
             position absolute
             right: 40px
             left: 40px
-            line-height 50px
+            line-height 44px
             font-size 18px
             text-align center
             white-space nowrap

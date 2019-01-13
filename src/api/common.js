@@ -15,6 +15,7 @@ import { commonParams, ERR_OK } from 'api/config'
  * options.userinfo: 用户信息
  * options.params: 获取其他参数
  */
+
 export function getSign(options) {
     // let {interfaceName, params, userinfo} = options
     let {interfaceName, userinfo, params} = options

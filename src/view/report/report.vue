@@ -121,8 +121,8 @@
         methods: {
             async _getReportList() {
                 let userinfo = await trigger(TYPES.GET_USERINFO)
-                console.log(userinfo)
                 // let userinfo = { token: '8FD45268F99E707A64B6E8A19531FD7AE2CB6DD247A91BDB65830B5A5922D807', user_id: '42' }
+                console.log(userinfo)
                 this.loading = true 
                 getReportList(userinfo).then((res) => {
                     this.chartData = this._normalizeList(res.data.data.list)
@@ -244,7 +244,7 @@
     .m-report
         position: fixed
         width 100%
-        top: 50px
+        top: 44px
         bottom: 0
         max-width: 540px
         min-width: 320px
@@ -268,7 +268,7 @@
             h2
                 display inline-block
                 font-size 16px
-                font-weight 700
+                font-weight 200
                 color #000
             span
                 font-size 12px

@@ -20,7 +20,8 @@ export const TYPES = {
     GET_USERINFO: 'getUserInfo',
     RELOAD: 'reload',
     ISAPP: 'isAPP',
-    BUY_SCALE: 'buyScale'
+    BUY_SCALE: 'buyScale',
+    CONSULTANT: 'consultant'
 }
 
 /**

@@ -77,8 +77,8 @@
             },
             async _getCmsInfo() {
                 this.loading = true
-                let userinfo = await trigger(TYPES.GET_USERINFO)
-                // let userinfo = { token: '963EF743A722C4C6CC552DECEC9DE71444AD3DDC1A08C486D43A04C6ABC40EFB', user_id: '35' }
+                // let userinfo = await trigger(TYPES.GET_USERINFO)
+                let userinfo = { token: '800AC0445485D8BB09343D5C989DDB1C02397B7896E6A7E7F15D423C0C21A04E', user_id: '43' }
                 let cid = this.$route.params.id
                 console.log(userinfo, cid)
 
@@ -115,7 +115,7 @@
     .m-wrapper
         position: fixed
         width 100%
-        top: 50px
+        top: 44px
         bottom: 0
         max-width 540px
         min-width 320px

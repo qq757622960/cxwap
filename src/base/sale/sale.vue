@@ -50,7 +50,7 @@
         width 100%
         background-color $color-background
     .wrapper
-        margin-top 60px
+        margin-top 54px
         height 100%
         overflow hidden
         div

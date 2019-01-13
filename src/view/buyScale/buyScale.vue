@@ -32,8 +32,8 @@
                 this.$refs.scroll.refresh()
             },
             buyScale() {
-                console.log('buyScale')
-                trigger(TYPES.BUY_SCALE)
+                // console.log('buyScale')
+                trigger(TYPES.CONSULTANT)
             },
             _getImgList() {
                 for (let i = 0; i < 12; i += 1) {

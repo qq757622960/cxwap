@@ -74,7 +74,7 @@
     .m-wrapper
         position: fixed
         width 100%
-        top: 60px
+        top: 54px
         bottom: 0
         max-width 540px
         min-width 320px

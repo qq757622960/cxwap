@@ -38,8 +38,20 @@
                     体脂称说明
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toScaleExplain" class="home-item">
+                    体脂称说明
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
+                <li @click="tohealthReport" class="home-item">
+                    健康报告
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toLife" class="home-item">
                     生命周期
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
+                <li @click="toImgTest" class="home-item">
+                    图片测试页面
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
                 <li @click="toBridge" class="home-item">
@@ -94,6 +106,12 @@
             toScaleExplain() {
                 this._toRouter('/scaleExplain')
             },
+            toImgTest() {
+                this._toRouter('/imgtest')
+            },
+            tohealthReport() {
+                this._toRouter('/healthReport')
+            },
             _toRouter(path) {
                 this.$router.push({
                     path: path
@@ -111,10 +129,11 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+    @import "~common/stylus/variable"
     .home
         position: fixed
         width 100%
-        top: 60px
+        top: $fixed-top
         bottom: 0
         max-width 540px
         min-width 320px

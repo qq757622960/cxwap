@@ -76,7 +76,7 @@
     .m-dload
         position: fixed
         width 100%
-        top: 50px
+        top: 44px
         bottom: 0
         max-width 540px
         min-width 320px
