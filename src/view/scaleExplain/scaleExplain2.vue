@@ -7,9 +7,9 @@
                     <img :src="content" alt="" @load="imgLoader" />
                 </div>
             </div>
-            <div class="loading-container" v-show="loading">
+            <!-- <div class="loading-container" v-show="loading">
                 <loading></loading>
-            </div>
+            </div> -->
         </scroll>
     </div>
 </template>
@@ -19,8 +19,7 @@
     import VHeader from 'base/vheader/vheader'
     import Loading from 'base/loading/loading'
     import { mixin } from 'mixin/index'
-    import { getScaleExplain } from 'api/scaleExplain'
-    import axios from 'axios'
+    import { getScaleExplain } from 'api/index'
 
     export default {
         
@@ -29,21 +28,15 @@
                 name: '体脂称说明',
                 title: '',
                 content: '',
-                loading: false
+                // loading: false
             }
         },
         mixins: [mixin],
         methods: {
-            _getScaleExplain() {
-                this.loading = true
-                getScaleExplain().then((res) => {
-                    let data = res.data
-                    if (data.ret === 200) {
-                        this.title = data.data.title
-                        this.content = data.data.image
-                        this.loading = false
-                    } 
-                })
+            async _getScaleExplain() {
+                let data = await getScaleExplain({ userinfo: {}, params: {} })
+                this.title = data.title
+                this.content = data.image
             },
             imgLoader() {
                 this.$refs.scroll.refresh()
@@ -56,7 +49,6 @@
         },
         created() {
             this._getScaleExplain()
-            console.dir(axios)
         },
         mounted() {}
     }

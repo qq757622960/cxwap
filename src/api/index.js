@@ -1,5 +1,62 @@
-import axios from 'axios'
-import jsonp from 'jsonp'
+import { GET } from 'api/httpRequest'
+import { ERR_OK } from 'api/config'
+
+export const getScaleExplain = function(options) {
+    let { userinfo, params} = options
+    return GET({
+        interfaceName: 'V1.Wap.ScaleExplain',
+        userinfo: userinfo,
+        params: params
+    }).then(successHandler)
+      .catch(errorHandler)
+
+}
+
+
+
+function successHandler(res) {
+    if (res.ret === ERR_OK) {
+        return Promise.resolve(res.data)
+    } else {
+        return Promise.reject(res.msg)    
+    }
+}
+function errorHandler(err) {
+    return Promise.reject(err)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // jsonp测试
 export function getGoodsList() {

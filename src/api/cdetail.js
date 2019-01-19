@@ -7,11 +7,12 @@
 import axios from 'axios'
 import { commonParams } from 'api/config'
 import { getSign } from 'api/common'
+import { APIURL } from 'api/url'
 
 // 获取详情列表
 export function getCmsInfo(userinfo = {}, cid) {
     let appsum, skey, data = null
-    let url = 'http://172.17.100.31/?service=V1.Cms_Channel.CmsInfo'
+    let url = APIURL + '?service=V1.Cms_Channel.CmsInfo'
     let getsign = getSign({
         interfaceName: 'V1.Cms_Channel.CmsInfo',
         userinfo: userinfo,

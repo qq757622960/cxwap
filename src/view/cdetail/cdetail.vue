@@ -77,8 +77,8 @@
             },
             async _getCmsInfo() {
                 this.loading = true
-                // let userinfo = await trigger(TYPES.GET_USERINFO)
-                let userinfo = { token: '800AC0445485D8BB09343D5C989DDB1C02397B7896E6A7E7F15D423C0C21A04E', user_id: '43' }
+                let userinfo = await trigger(TYPES.GET_USERINFO)
+                // let userinfo = { token: '800AC0445485D8BB09343D5C989DDB1C02397B7896E6A7E7F15D423C0C21A04E', user_id: '43' }
                 let cid = this.$route.params.id
                 console.log(userinfo, cid)
 

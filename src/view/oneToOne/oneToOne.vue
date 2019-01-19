@@ -1,6 +1,7 @@
 <template>
     <div class="m-scale">
-        <a class="back" @click="back"><i class="iconfont icon-fanhuijiantouxiangqingye"></i></a>
+        <v-header htitle="专属定制" @back="back"></v-header>
+        <!-- <a class="back" @click="back"><i class="iconfont icon-fanhuijiantouxiangqingye"></i></a> -->
         <scroll class="wrapper" ref="scroll">
             <div>
                 <section 
@@ -11,7 +12,7 @@
                 </section>
             </div>
         </scroll>
-        <a @click="buyScale" class="m-btn">购买体脂称</a>
+        <a @click="toConsultant" class="m-btn">咨询定制</a>
     </div>
 </template>
 
@@ -31,13 +32,12 @@
             imgLoader() {
                 this.$refs.scroll.refresh()
             },
-            buyScale() {
-                // console.log('buyScale')
+            toConsultant() {
                 trigger(TYPES.CONSULTANT)
             },
             _getImgList() {
-                for (let i = 0; i < 12; i += 1) {
-                    this.imgdata.push(require(`./${i+5}.png`))
+                for (let i = 0; i < 5; i += 1) {
+                    this.imgdata.push(require(`./${i+5}.jpg`))
                 }
             }
         },
@@ -55,6 +55,7 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+    @import "~common/stylus/variable"
     .back
         position fixed
         top 0
@@ -81,7 +82,7 @@
     .m-scale
         position: fixed
         width 100%
-        top: 0px
+        top: $fixed-top
         bottom: 0
         max-width 540px
         min-width 320px

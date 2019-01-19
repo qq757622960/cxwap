@@ -24,6 +24,13 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1. sudo cnpm install vue-cli -g
 2. vue init webpack vuetmp
 
+> 接口地址
+1. http://172.17.100.31/  开发服
+2. http://172.17.100.31:8082/req.php    开发服获取签名接口
+
+3. http://106.15.91.31/   测试服
+4. http://106.15.91.31:8082/req.php     测试服获取签名接口
+
 > 工作进展
 
 * 2018.12.27

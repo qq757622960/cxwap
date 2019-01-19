@@ -7,11 +7,12 @@
 import axios from 'axios'
 import { commonParams } from 'api/config'
 import { getSign } from 'api/common'
+import { APIURL } from 'api/url'
 
 // 获取健康报告接口
 export function getHealthReport(userinfo = {}, params = {}) {
     let appsum, skey, data = null
-    let url = 'http://172.17.100.31/?service=V1.HealthReport.HealthReportList'
+    let url = APIURL + '?service=V1.HealthReport.HealthReportList'
     let getsign = getSign({
         interfaceName: 'V1.HealthReport.HealthReportList',
         userinfo: userinfo,

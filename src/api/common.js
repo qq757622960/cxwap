@@ -6,7 +6,7 @@
 
 import axios from 'axios'
 import { commonParams, ERR_OK } from 'api/config'
-
+import { APIURL } from 'api/url'
 
 /**
  * 获取签名
@@ -16,10 +16,13 @@ import { commonParams, ERR_OK } from 'api/config'
  * options.params: 获取其他参数
  */
 
+// let {interfaceName, params, userinfo} = options
 export function getSign(options) {
-    // let {interfaceName, params, userinfo} = options
     let {interfaceName, userinfo, params} = options
     let url = 'http://172.17.100.31:8082/req.php?service=' + interfaceName
+    if (process.env.NODE_ENV !== 'development') {
+        url = 'http://106.15.91.31:8082/req.php?service=' + interfaceName
+    }
     let data = Object.assign({}, commonParams, userinfo)
     let paramsObj = Object.assign({}, data, params)
 

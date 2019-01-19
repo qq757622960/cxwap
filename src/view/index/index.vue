@@ -46,6 +46,10 @@
                     健康报告
                     <i class="icon iconfont icon-jinrujiantou"></i>
                 </li>
+                <li @click="toOneToOne" class="home-item">
+                    一对一
+                    <i class="icon iconfont icon-jinrujiantou"></i>
+                </li>
                 <li @click="toLife" class="home-item">
                     生命周期
                     <i class="icon iconfont icon-jinrujiantou"></i>
@@ -111,6 +115,9 @@
             },
             tohealthReport() {
                 this._toRouter('/healthReport')
+            },
+            toOneToOne() {
+                this._toRouter('/oneToOne')
             },
             _toRouter(path) {
                 this.$router.push({

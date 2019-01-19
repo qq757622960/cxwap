@@ -69,6 +69,10 @@ export default new Router({
 			component: resolve => require(['view/buyScale/buyScale'], resolve)
 		},
 		{
+			path: '/oneToOne',
+			component: resolve => require(['view/oneToOne/oneToOne'], resolve)
+		},
+		{
 			path: '/scaleExplain',
 			component: resolve => require(['view/scaleExplain/scaleExplain'], resolve)
 		},

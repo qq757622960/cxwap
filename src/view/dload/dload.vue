@@ -1,6 +1,6 @@
 <template>
     <div class="m-dload">
-        <v-header htitle="幻轻APP" @back="back"></v-header>
+        <!-- <v-header htitle="幻轻APP" @back="back"></v-header> -->
         <scroll class="wrapper" ref="scroll">
             <div>
                 <!-- 第一张或最后一张显示下载按钮 -->
@@ -26,7 +26,7 @@
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
 
-    const ANDROID_URL = 'https://github.com/'
+    const ANDROID_URL = 'http://106.15.91.31/app.apk'
     const IOS_URL = 'http://www.baidu.com'
 
     export default {
@@ -76,7 +76,7 @@
     .m-dload
         position: fixed
         width 100%
-        top: 44px
+        top: 0
         bottom: 0
         max-width 540px
         min-width 320px

@@ -7,11 +7,12 @@
 import axios from 'axios'
 import { commonParams } from 'api/config'
 import { getSign } from 'api/common'
+import { APIURL } from 'api/url'
 
 // 获取体脂称说明
 export function getScaleExplain() {
     let appsum, skey, data = null
-    let url = 'http://172.17.100.31/?service=V1.Wap.ScaleExplain'
+    let url = APIURL + '?service=V1.Wap.ScaleExplain'
     let getsign = getSign({
         interfaceName: 'V1.Wap.ScaleExplain',
         params: {}

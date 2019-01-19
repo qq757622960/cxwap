@@ -8,10 +8,6 @@
                     <h2>体重曲线</h2>
                     <span>/kg</span>
                 </div>
-                <!-- <ve-line
-                    :data="chartData"
-                    :extend="chartExtend">
-                </ve-line> -->
                 <ve-line
                     :data="chartData"
                     :extend="chartExtend"
@@ -121,7 +117,8 @@
         methods: {
             async _getReportList() {
                 let userinfo = await trigger(TYPES.GET_USERINFO)
-                // let userinfo = { token: '8FD45268F99E707A64B6E8A19531FD7AE2CB6DD247A91BDB65830B5A5922D807', user_id: '42' }
+                // let userinfo = { token: '0E9D46E144AE8A688334E906A4D03BDF526019B83AD7952C8ACC1DDF89E250EF', user_id: '43' }
+                // let userinfo = { token: '5CF3FBF4DCF00D6A85916CEC4D2A69FCA465658D6E3B3EBF4C999DF3862E03B9', user_id: '36' }
                 console.log(userinfo)
                 this.loading = true 
                 getReportList(userinfo).then((res) => {
@@ -150,6 +147,7 @@
                 length <= 7 
                     ? (this.start = 0) 
                     : (this.start = (100 - Math.floor(7 / length * 100)))
+                console.log(this.start)
             },
             _setCharts() {
                 let me = this
@@ -160,7 +158,7 @@
                 this.chartExtend = {
                     dataZoom: [{
                         type: 'inside',
-                        start: 20,
+                        start: this.start,
                         end: 100
                     }],
                     title: {

@@ -2,17 +2,7 @@
     <sale htitle="温馨提醒">
         <div class="wrapper">
             <div v-html="data && data[0] && data[0].content"></div>
-            <!-- <div class="content">
-                <h2 class="title">尊敬的客户: </h2>
-                <p>您好！为了保证您的使用效果您需要注意以下几点：</p>
-                <ul>
-                    <li>1. 我们的健康顾问电话都是 <a href="tel:10086">10086</a>、<a href="tel:10086">10086</a>号码段，请不要轻信其他冒用我们公司名义的电话，如有疑问，欢迎致电全国售后服务热线：<a href="tel:10086">10086</a></li>
-                    <li>2. 在我们为您服务当中，如您对我们的健康顾问服务不满，可在周一至周六9:00-18:00拨打售后服务热线：<a href="tel:10086">10086</a></li>
-                </ul>
-            </div>
-            <div class="footer">
-                <a @click.prevent="telPhone" href="tel:400-1122-819">售后服务热线 400-1122-819</a>
-            </div> -->
+            <div class="btn" @click="telPhone"></div>
         </div>
     </sale>
 </template>
@@ -21,7 +11,7 @@
     import Scroll from 'base/scroll/scroll'
     import VHeader from 'base/vheader/vheader'
     import Sale from 'base/sale/sale'
-    import {telPhone} from 'common/js/bridge'
+    import {trigger, TYPES} from 'common/js/bridge'
 
     export default {
         props: {
@@ -31,27 +21,14 @@
             }
         },
         data () {
-            return {
-                telNumber: 4001122819
-            }
+            return {}
         },
         methods: {
-            telPhone(event) {
-                // 桥接app
-                telPhone(this.telNumber)
+            async telPhone() {
+                let res = await trigger(TYPES.TEL_PHONE, {'number': 4001122819})
             }
         },
-        mounted() {
-            this.$nextTick(() => {
-                let link = this.$el.querySelector('.footer a')
-                link.addEventListener('click', function(e) {
-                    let href = e.target.href
-                    href = href.replace('tel:', '')
-                    telPhone(href)
-                    e.preventDefault()
-                })
-            })
-        },
+        mounted() {},
         created() {
             
         },
@@ -72,6 +49,13 @@
         padding-bottom 50px
         background-color #fff
         border-radius 5px
+        .btn
+            position absolute
+            bottom 20px
+            left 0
+            right 0
+            height 240px
+            background-color transparent
         .content
             flex 1
             padding 15px 7px

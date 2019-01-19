@@ -42,7 +42,7 @@
              * 列表的数据
              */
             data: {
-                type: Array,
+                type: [Array, Object],
                 default: null
             },
             /**
