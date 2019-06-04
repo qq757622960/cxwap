@@ -44,11 +44,11 @@
         methods: {
             dload(e) {
                 let target = e.target
-
                 if (this.result.android) {
                     target.href = ANDROID_URL
                 } else if (this.result.ios) {
-                    target.href = IOS_URL
+                    alert('IOS 待上线...');
+                    // target.href = IOS_URL
                 } else if (this.result.weixin) {
 
                 }

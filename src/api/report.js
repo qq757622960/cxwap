@@ -3,6 +3,8 @@ import { commonParams } from 'api/config'
 import { getSign } from 'api/common'
 import { APIURL } from 'api/url'
 
+// let APIURL = 'http://172.17.100.31/'
+
 // 获取报表列表
 export function getReportList(userinfo = {}) {
     let appsum, skey, data = null

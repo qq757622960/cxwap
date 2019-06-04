@@ -97,7 +97,6 @@
     // }
 
     export default {
-        
         data () {
             this.chartSettings = {}
             this.chartExtend = {}
